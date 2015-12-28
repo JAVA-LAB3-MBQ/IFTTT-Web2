@@ -21,7 +21,7 @@ public class TaskDaoImpl implements ITaskDao {
 				+ t.getCreateTime()+"\","+t.getTaskStatus() + ",\"" + t.getThisInfo() + "\",\"" + t.getThatInfo() + "\");";
 			statement.executeUpdate(update);
 			con.close();
-			return true;
+			return true; // return true
 		}
 		catch(ClassNotFoundException e){
 			e.printStackTrace();
