@@ -39,13 +39,6 @@ public abstract class ThenThat {
 		thatInfo = i;
 	}
 	
-	public String getThatInfo() {
-		return thatInfo;
-	}
-	
-	public void setThatInfo(String i) {
-		thatInfo = i;
-	}
 	
 	abstract public boolean doIt();
     abstract public boolean add2Db();

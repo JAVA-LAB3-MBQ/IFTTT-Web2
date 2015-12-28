@@ -101,7 +101,13 @@ public class TaskThread extends Thread{
 							case IfThis.thisListenWeiboTypeValue:
 								String queryThisWeibo = "select * from IfThisListenWeibo where thisId = \"" + thisId + "\"";
 								ResultSet resThisWeibo = statement1.executeQuery(queryThisWeibo);
-								IfThisListenWeibo thisWeibo = new IfThisListenWeibo(resThisWeibo.getString("thisId"),resThisWeibo.getString("thisWeiboId"),resThisWeibo.getString("thisWeiboContent"),resThisWeibo.getString("thisTimeLen"));
+								IfThisListenWeibo thisWeibo = new IfThisListenWeibo();
+								thisWeibo.setThisId(resThisWeibo.getString("thisId"));
+								thisWeibo.setThisWeiboId(resThisWeibo.getString("thisWeiboId"));
+								thisWeibo.setThisWeiboPwd(resThisWeibo.getString("thisWeiboPwd"));
+								thisWeibo.setThisWeiboContent(resThisWeibo.getString("thisWeiboContent"));
+								thisWeibo.setThisTimeLen(resThisWeibo.getString("thisTimeLen"));
+								
 								if(thisWeibo.ifHappened()){
 									if(thatType == ThenThat.thatSendMailTypeValue){
 										String queryThat = "select * from ThenThatSendMail where thatId = \"" + thatId + "\"";

@@ -22,48 +22,29 @@ public class TaskServiceImpl implements ITaskService {
 		
 	    // add that_ into database
         that_.add2Db();
-<<<<<<< HEAD
 		// add task into database
 		TaskDaoImpl tdb = new TaskDaoImpl();
 		tdb.addTask(task);
-		  
-=======
-		
-        // add task into database
-        TaskDaoImpl tdb = new TaskDaoImpl();
-        tdb.addTask(task);
         
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
         return task;
 	}
 	
 	public Task editTask(String userId, String tId, String tName, IfThis this_, ThenThat that_) {
 		// remove old task
 		this.removeTask(tId);
-<<<<<<< HEAD
 				
 		// add new task
 		this.addTask(userId, tId, tName, this_, that_);
 				
 		Task t = new Task(userId, tId, tName, this_, that_);
 		return t;
-=======
-		
-		// add new task
-		this.addTask(userId, tId, tName, this_, that_);
-		
-		return null;
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 
 	public boolean removeTask(String taskId) {
 		TaskDaoImpl tdb = new TaskDaoImpl();
 		return tdb.removeTask(taskId);
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
+
 	public Task getTask(String taskId) {
 		// get the Task from db
 		TaskDaoImpl tdb = new TaskDaoImpl();

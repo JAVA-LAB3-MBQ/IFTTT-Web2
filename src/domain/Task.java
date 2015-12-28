@@ -18,17 +18,10 @@ public class Task {
 	private String createTime;
 	private int taskStatus;
 	
-	private String thisInfo;
-	private String thatInfo;
-	
 	public Task(){
 		createTime = (DateStringUtil.date2String(new Date()));
 		taskStatus = Task.pausedStatus;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	public Task(String userId, String taskId, String taskName, String thisId, String thatId, int thisType, int thatType){
 		this.userId = userId;
 		this.taskId = taskId;
@@ -133,11 +126,26 @@ public class Task {
 	public String getThisInfo(){
 		return thisInfo;
 	}
+	public void setThisInfo(String i) {
+		thisInfo = i;
+	}
 	public String getThatInfo(){
 		return thatInfo;
 	}
+	public void setThatInfo(String i) {
+		thatInfo = i;
+	}
+	public void setThisIconPath(String i) {
+		thisIconPath = i;
+	}
 	public void setUserId(String uid) {
 		userId = uid;
+	}
+	public void setThatIconPath(String i) {
+		thatIconPath = i;
+	}
+	public void setTaskStatus(int i) {
+		taskStatus = i;
 	}
 	public void setTaskId(String tid){
 		taskId = tid;
@@ -157,6 +165,4 @@ public class Task {
 	public void setThatType(int t){
 		thatType = t;
 	}
-<<<<<<< HEAD
-	
 }

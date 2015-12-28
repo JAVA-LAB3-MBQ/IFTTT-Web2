@@ -87,7 +87,7 @@ public class UserServiceImpl implements IUserService {
 		UserDaoImpl t = new UserDaoImpl();
 		User user = t.find(userName, userPwd);
 		if(user != null) {
-			t.changeUserStatus(user.getId(), User.loggedIn); // from User.loggedOut to User.loggedIn
+			t.changeUserStatus(user.getUserId(), User.loggedIn); // from User.loggedOut to User.loggedIn
 		}
 		
 		return user;

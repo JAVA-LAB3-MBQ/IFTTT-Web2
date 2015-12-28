@@ -10,6 +10,14 @@ public abstract class IfThis {
 	private String thisIconPath;
 	private String thisInfo;
 	
+	public String getThisInfo() {
+		return thisInfo;
+	}
+	
+	public void setThisInfo(String s) {
+		thisInfo = s;
+	}
+	
 	public String getThisId() {
 		return thisId;
 	}
@@ -32,20 +40,6 @@ public abstract class IfThis {
 	
 	public void setThisIconPath(String iconp) {
 		thisIconPath = iconp;
-	}
-	public String getThisInfo(){
-		return thisInfo;
-	}
-	public void setThisInfo(String i){
-		thisInfo = i;
-	}
-	
-	public String getThisInfo() {
-		return thisInfo;
-	}
-	
-	public void setThisInfo(String i) {
-		thisInfo = i;
 	}
 	abstract public boolean ifHappened(); 
 	abstract public boolean add2Db(); 

@@ -29,7 +29,6 @@ public class IfThisReceiveMail extends IfThis{
 		this.thisEmailId = thisEmailId;
 		this.thisEmailPwd = thisEmailPwd;
 		this.setThisType(IfThis.thisReceiveMailTypeValue);
-<<<<<<< HEAD
 		this.setThisInfo("if receive a mail: receiver-" + thisEmailId);
 	}
 	public IfThisReceiveMail(String thisId,String thisEmailId, String thisEmailPwd){
@@ -39,18 +38,6 @@ public class IfThisReceiveMail extends IfThis{
 		this.setThisType(IfThis.thisReceiveMailTypeValue);
 		this.setThisInfo("if receive a mail: receiver-" + thisEmailId);
 	}
-	
-=======
-		this.setThisInfo("Receive a new mail");
-	}
-	
-	public IfThisReceiveMail(String userId) {
-		// todo: get user's email and emailpwd
-		
-		this.setThisType(IfThis.thisReceiveMailTypeValue);
-		this.setThisInfo("Receive a new mail");
-	}
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	
 	public IfThisReceiveMail(String userId) {
 		// todo: get user's email and emailpwd
@@ -174,9 +161,8 @@ public class IfThisReceiveMail extends IfThis{
 		    return false;
 		}
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
+	public boolean removeFromDb() {
+		return false;
+	}
 }

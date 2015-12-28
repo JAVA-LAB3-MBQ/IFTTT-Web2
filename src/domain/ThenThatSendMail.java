@@ -63,10 +63,6 @@ public class ThenThatSendMail extends ThenThat{
 		
 		this.setThatType(ThenThat.thatSendMailTypeValue);
 		this.setThatInfo("Send a mail: receiver-" + thatDestEmailId + ";content-" + thatEmailContent);
-<<<<<<< HEAD
-		
-=======
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 	}
 	
 	public ThenThatSendMail(String thatSrcEmailId, String thatSrcEmailPwd, String thatDestEmailId, String thatEmailContent){

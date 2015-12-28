@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		    
 			// construct formbean
 			UserMainFormBean formbean = new UserMainFormBean();
-			formbean.setUserId(user.getId());
+			formbean.setUserId(user.getUserId());
 			formbean.setUserLevel(String.format("%d", user.getUserLevel()));
 			formbean.setUserName(user.getName());
 			request.setAttribute("formbean", formbean);

@@ -32,22 +32,14 @@ public class TaskDaoImpl implements ITaskDao {
 		return false;
 	}
 	
-<<<<<<< HEAD
 	public boolean removeTask(String taskId) {
-=======
-	public boolean removeTask(String tid) {
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 		// todo : remove the Task from db
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
 			Statement statement = con.createStatement();
-<<<<<<< HEAD
 			String update = "delete from task where taskId = \"" + taskId + "\"";
-=======
-			String update = "delete * from task where taskId = \"" + tid + "\"";
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 			statement.executeUpdate(update);
 			con.close();
 			return true;
@@ -72,15 +64,8 @@ public class TaskDaoImpl implements ITaskDao {
 			String query = "select * from task where userId = \"" + userId + "\"";
 			ResultSet res = statement.executeQuery(query);
 			while(res.next()){
-<<<<<<< HEAD
 				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),res.getString("thisId"),res.getString("thatId"),res.getInt("thisType"),res.getInt("thatType"),res.getString("thisIconPath"),res.getString("thatIconPath"),res.getString("createTime"),res.getInt("taskStatus")
 						,res.getString("thisInfo"),res.getString("thatInfo"));
-=======
-				Task t = new Task(res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),res.getInt(6),res.getInt(7),res.getString(8),res.getString(9),res.getString(10),res.getInt(11));
-				// todo: about info
-				//t.setThisInfo( );
-				//t.setThatInfo( );
->>>>>>> acaa7f1a0ffc3698bb627cb0d84f1d3fc8a0ab34
 				tasks.add(t);
 			}
 			return tasks;
@@ -116,13 +101,6 @@ public class TaskDaoImpl implements ITaskDao {
 			ee.printStackTrace();
 		}
 		return null;
-	}
-	
-	public Task getATask(String taskId) {
-		// todo :
-		Task t = new Task();
-		
-		return t;
 	}
 	
 	public boolean startTask(String taskId) {

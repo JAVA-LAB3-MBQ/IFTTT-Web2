@@ -19,9 +19,7 @@ public class ThenThatSendWeibo extends ThenThat{
 	
 	public ThenThatSendWeibo(String userId, String weiboContent) {
 		// todo: get user's weiboId and accessToken, weibopwd
-<<<<<<< HEAD
 		thatWeiboContent = weiboContent;
-=======
 		
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
 		this.setThatInfo("Send Weibo: content-" + thatWeiboContent);
@@ -56,10 +54,6 @@ public class ThenThatSendWeibo extends ThenThat{
 	}
 	public void setThatWeiboContent(String thatWeiboContent){
 		this.thatWeiboContent = thatWeiboContent;
-	}
-	public boolean doIt() {
-		// todo:
-		return false;
 	}
 	
 	public boolean add2Db() {
