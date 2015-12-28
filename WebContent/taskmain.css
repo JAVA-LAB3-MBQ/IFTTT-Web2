@@ -1,0 +1,298 @@
+@CHARSET "UTF-8";
+.setting_label  {width:100px;height:10px;}
+.button {font-size:125%;font-family:"宋体";background-color:#CCFFFF;}
+#edit_usrinfo_commit {display: inline-block;text-align: center;top: 100%; padding: 19px 24px 21px 24px;line-width : 35px; line-height: 18px;}
+label {font-size:125%;}
+body {background-repeat: no-repeat;
+background-attachment:fixed;
+background-size:100% 100%;
+ font-family: Verdana, Arial, '微软雅黑';}
+.info-inner {position:absolute;
+left:100px;
+top:160px;
+width:600px;
+background:#f0f8ff;}
+.creat_recipe_info-inner {position:absolute;
+left:100px;
+top:200px;
+width:600px;
+background:#f0f8ff;}
+.title_pics { position:absolute;
+left:0;
+top:10%;
+width:100%;}
+.copyright {position:absolute;
+left:50%;
+top:100%;
+text-align:down;}
+
+.create_recipe_inline_text_block {
+top:120px;
+font-family: 'Lucida Console';
+font-size:60px;
+}
+.special_create_helper {
+font-family:verdana;
+font-size:80%;
+color:#00ff00;
+position:absulote;
+}
+.choose_trigger {
+position:absolute;
+left:5%;
+top:23%;
+width:80%;
+background:white;
+font-family:verdana;
+font-size:20px;
+color:#004000;
+}
+div.pics #clock_pic{
+position:absolute;
+left:5%;
+top:40%;
+}
+div.pics #mail_pic{
+position:absolute;
+left:5%;
+top:60%;
+}
+div.pics #weibo_pic{
+position:absolute;
+left:5%;
+top:80%;
+}
+input.ipt{
+width:50%;
+}
+div#logo{
+         position:absolute;
+         top:3%;
+         left:12%;
+     }
+#show_window_time{
+width:22%;
+height:28%;
+position:absolute;
+top:42%;
+left:40%;
+border:1px gray solid;
+border-radius:15px;
+box-shadow:2px 2px 4px #aaaaaa,-2px -2px 4px #aaaaaa;
+line-height:55px;
+z-index:10000;
+background-color:#f0f8ff;
+}
+#show_window_mail{
+width:22%;
+height:28%;
+position:absolute;
+top:42%;
+left:40%;
+border:1px gray solid;
+border-radius:15px;
+box-shadow:2px 2px 4px #aaaaaa,-2px -2px 4px #aaaaaa;
+line-height:55px;
+z-index:10000;
+background-color:#f0f8ff;
+
+}
+#show_window_weibo{
+width:22%;
+height:28%;
+position:absolute;
+top:42%;
+left:40%;
+border:1px gray solid;
+border-radius:15px;
+box-shadow:2px 2px 4px #aaaaaa,-2px -2px 4px #aaaaaa;
+line-height:55px;
+z-index:10000;
+background-color:#f0f8ff;
+
+}
+.chooseTask {
+position:absolute;
+right:10%;
+top:23%;
+background:white;
+font-family:verdana;
+font-size:20px;
+color:#004000;
+}
+div.pics #mail_pic_task{
+position:absolute;
+right:10%;
+top:40%;
+}
+div.pics #weibo_pic_task{
+position:absolute;
+right:10%;
+top:80%;
+}
+div#center_contatiner{
+position:absolute;
+left:15%;
+top:40%;
+}
+div#center_contatiner#bg_image{
+position:absolute;
+left:0;
+top:0;
+width:100px;
+}
+div#title_tips{
+background:#F0F0F0;
+font-family:verdana;
+font-size:40px;
+color:#004000;
+position:absolute;
+left:12%;
+width:100%;
+}
+#show_window_mail_send{
+width:22%;
+height:28%;
+position:absolute;
+top:42%;
+left:40%;
+border:1px gray solid;
+border-radius:15px;
+box-shadow:2px 2px 4px #aaaaaa,-2px -2px 4px #aaaaaa;
+line-height:55px;
+z-index:10000;
+background-color:#f0f8ff;
+
+}
+#show_window_weibo_send{
+width:22%;
+height:38%;
+position:absolute;
+top:42%;
+left:40%;
+border:1px gray solid;
+border-radius:15px;
+box-shadow:2px 2px 4px #aaaaaa,-2px -2px 4px #aaaaaa;
+line-height:55px;
+z-index:10000;
+background-color:#f0f8ff;
+
+}
+#taskNum{
+font-size:20px;
+}
+#TaskContatiner{
+position:absolute;
+top:20%;
+left:12%;
+right:10%;
+bottom:20%;
+}
+#Taskinfo{
+position:absolute;
+left:3%;
+right:0;
+top:3%;
+}
+#edit_icons{
+position:absolute;
+left:60%;
+top:20%;
+right:0;
+width:400px;
+}
+#taskTimetip{
+position:absolute;
+left:60%;
+top:95%;
+font-size:14px;
+color:gray;
+}
+#Taskinfo_1{
+position:absolute;
+left:3%;
+right:0;
+top:43%;
+}
+#Taskinfo_2{
+position:absolute;
+left:3%;
+right:0;
+top:83%;
+}
+#page_tip
+{
+position:absolute;
+left:47%;
+bottom:3%;
+}
+div#menus {position:absolute;
+left:66%;
+top:1%;
+}
+#menus ul {
+list-style: none;
+}
+#menus ul li {
+float: left;
+}
+#menus ul li a:link, #menus ul li a:visited {
+display: block;
+width: 120px;
+height:25px;
+font-weight: bold;
+color: black;
+background-color: white;
+text-align: center;
+padding: 4px;
+line-height:25px;
+text-decoration: none;
+text-transform: none;
+}
+
+#menus ul li a:hover, #menus ul li a:active {
+background-color: white;
+}
+#menus ul li:hover ul {
+display: block;
+position: absolute;
+width: 100px;
+/*left:0;*/
+z-index: 10000;
+
+}
+#menus ul li ul {
+display: none;
+}
+#menus ul li:hover ul li a {
+display: block;
+background-color: white;
+color: black;
+width: 100px;
+text-align: center;
+border-bottom: 1px solid #f2f2f2;
+border-right: none;
+border: #666 solid 1px;
+}
+#menus ul li:hover ul li a:hover {
+background: #6dc7ec;
+color: black;
+}
+
+#menus ul li ul li {
+float: none;
+width: 100%;
+line-height: 12px;
+display: block;
+}
+
+#menus ul li ul li a {
+font-size: 12px;
+width: 100%;
+padding: 3px 0;
+text-align: center;
+line-height: 18px;
+}
+#TaskContatiner ul{
+list-style:none;font-family:Arial;font-size:66px;font-weight:bold;
+}

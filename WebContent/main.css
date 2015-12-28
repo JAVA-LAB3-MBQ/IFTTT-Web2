@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+html {background-color: #ffffff;}
+label {font-size:125%;}
+body {background-repeat: no-repeat;background-attachment:fixed;background-size:100% 100%;}
+.div logo{position:absolute;left:80px;top:5%;}
+.head_tips{font-size:21px;}
+.div line{ position:absolute;left:6%;top:11%;}
+.div menus {position:absolute;left:66%;top:5%;}
+.div menus ul {list-style: none;}
+.div menus ul li {float: left;}
+.div menus ul li a:link, .div menus ul li a:visited {display: block;width: 120px;height:25px;font-weight: bold;color: black;
+                background-color: white;text-align: right;padding: 4px;line-height:25px;text-decoration: none;text-transform: none;}
+.div menus ul li a:hover, .div menus ul li a:active {background-color: white;}
+.div menus ul li:hover ul {display: block;position: absolute;width: 100px; /*left:0;*/z-index: 10000;}
+.div menus ul li ul {display: none;}
+.div menus ul li:hover ul li a {display: block;background-color: white;color: black;width: 100px;
+text-align: right;border-bottom: 1px solid #f2f2f2;border-right: none;border: #666 solid 1px;}
+.div menus ul li:hover ul li a:hover {background: #6dc7ec;color: black;}
+.div menus ul li ul li {float: none;width: 100%;line-height: 12px;display: block;}
+.div menus ul li ul li a {font-size: 12px;width: 100%;padding: 3px 0;text-align: right;line-height: 18px;}
+      
+.setting_label  {width:100px;height:10px;}
+.button {font-size:125%;font-family:"宋体";background-color:#CCFFFF;}
+#edit_usrinfo_commit {display: inline-block;text-align: center;top: 100%; padding: 19px 24px 21px 24px;line-width : 35px; line-height: 18px;}
+.info-inner {position:absolute;left:100px;top:135px;width:600px;background:#ffffff;line-width : 15px; line-height: 12px;}
+.creat_recipe_info-inner {position:absolute;left:100px;top:200px;width:600px;background:#f0f8ff;}
+.title_pic { position:absolute;left:30px;top:35px;width:100px;}
+.title_info {postion: absolute; left: 50px; top: 75px; background: #F0F0F0;font-size: 25px;height: 60px;line-height:60px;width:1800px;}
+.copyright {position:absolute;left:800px;top: 95%;text-align:down;}
+	                 
+.create_recipe_inline_text_block {top:120px;font-family: 'Lucida Console';font-size:60px;}
+.special_create_helper {font-family:verdana;font-size:80%;color:#00ff00;position:absulote;}
+.choose_trigger {position:absolute;left:100px;top:325px;width:400px;background:#f0f8ff;font-family:verdana;font-size:20px;color:#004000;}
+.box{position:absolute;left:100px;top:350px;width:400px;height: auto;margin: 0 auto;}
+.box li{ float:left; padding-left:10px;width:20px;}
+ 
