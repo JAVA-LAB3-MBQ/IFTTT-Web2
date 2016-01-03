@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dao.ITaskDao;
 import domain.DatabaseInfo;
+import domain.IfThisListenWeibo;
 import domain.Task;
 
 public class TaskDaoImpl implements ITaskDao {
@@ -64,8 +65,12 @@ public class TaskDaoImpl implements ITaskDao {
 			String query = "select * from task where userId = \"" + userId + "\"";
 			ResultSet res = statement.executeQuery(query);
 			while(res.next()){
-				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),res.getString("thisId"),res.getString("thatId"),res.getInt("thisType"),res.getInt("thatType"),res.getString("thisIconPath"),res.getString("thatIconPath"),res.getString("createTime"),res.getInt("taskStatus")
-						,res.getString("thisInfo"),res.getString("thatInfo"));
+				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),
+						res.getString("thisId"),res.getString("thatId"),
+						res.getInt("thisType"),res.getInt("thatType"),
+						res.getString("thisIconPath"),res.getString("thatIconPath"),
+						res.getString("createTime"),res.getInt("taskStatus"),
+						res.getString("thisInfo"),res.getString("thatInfo"));
 				tasks.add(t);
 			}
 			return tasks;
@@ -88,7 +93,11 @@ public class TaskDaoImpl implements ITaskDao {
 			String query = "select * from task where taskId = \"" + taskId + "\";";
 			ResultSet res = statement.executeQuery(query);
 			if(res.next()){
-				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),res.getString("thisId"),res.getString("thatId"),res.getInt("thisType"),res.getInt("thatType"),res.getString("thisIconPath"),res.getString("thatIconPath"),res.getString("createTime"),res.getInt("taskStatus")
+				Task t = new Task(res.getString("userId"),res.getString("taskId"),res.getString("taskName"),
+						res.getString("thisId"),res.getString("thatId"),
+						res.getInt("thisType"),res.getInt("thatType"),
+						res.getString("thisIconPath"),res.getString("thatIconPath"),
+						res.getString("createTime"),res.getInt("taskStatus")
 						,res.getString("thisInfo"),res.getString("thatInfo"));
 				return t;
 			}
@@ -114,6 +123,26 @@ public class TaskDaoImpl implements ITaskDao {
 			String update = "update task set taskStatus = " + Task.startedStatus + " where taskId = \"" + taskId + "\"";
 			System.out.println(update);
 			statement.executeUpdate(update);
+			
+			Statement statement2 = con.createStatement();
+			String query = "select thisId,thisType from task where taskId = \"" + taskId + "\"";
+			ResultSet res = statement2.executeQuery(query);
+			if(res.next()){
+				int thisType = res.getInt("thisType");
+				String thisId = res.getString("thisId");
+				if(thisType == domain.IfThis.thisListenWeiboTypeValue){
+					Statement statement3 = con.createStatement();
+					String query2 = "select thisWeiboType,thisTimeLen from IfThisListenWeibo where thisId = \"" + thisId + "\"";
+					ResultSet res2 = statement3.executeQuery(query2);
+					if(res2.next()){
+						if(res2.getInt("thisWeiboType") == IfThisListenWeibo.IfThisListenWeiboTypeTwo){
+							String update2 = "update IfThisListenWeibo set thisWeiboStartTime = \"" + util.DateStringUtil.date2String(new java.util.Date()) + "\" where thisId = \"" + thisId + "\"";
+							Statement statement4 = con.createStatement();
+							statement4.executeUpdate(update2);
+						}
+					}
+				}
+			}
 			con.close();
 			return true;
 		}
@@ -135,6 +164,28 @@ public class TaskDaoImpl implements ITaskDao {
 			Statement statement = con.createStatement();
 			statement.executeUpdate("SET SQL_SAFE_UPDATES = 0");
 			String update = "update task set taskStatus = " + Task.pausedStatus + " where taskId = \"" + taskId + "\"";
+			statement.executeUpdate(update);
+			con.close();
+			return true;
+		}
+		catch(ClassNotFoundException e){
+			return false;
+		}
+		catch(SQLException ee){
+			return false;
+			
+		}
+	}
+	
+	public boolean pauseTaskOnThisId(String thisId) {
+		// todo: change the task's status
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con =
+					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
+			Statement statement = con.createStatement();
+			statement.executeUpdate("SET SQL_SAFE_UPDATES = 0");
+			String update = "update task set taskStatus = " + Task.pausedStatus + " where thisId = \"" + thisId + "\"";
 			statement.executeUpdate(update);
 			con.close();
 			return true;

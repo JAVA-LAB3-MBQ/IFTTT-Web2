@@ -2,15 +2,16 @@ package dao.impl;
 
 import domain.User;
 import domain.DatabaseInfo;
+import domain.Message;
 import dao.IUserDao;
 import java.sql.*;
+import java.util.ArrayList;
 import java.lang.Integer;
 
 public class UserDaoImpl implements IUserDao{
 	String url = "jdbc:mysql://localhost:3306/java" ;   
     String username = DatabaseInfo.username ;    
     String password = DatabaseInfo.password ; 
-   
 	public User find(String userName, String userPwd){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
@@ -142,5 +143,46 @@ public class UserDaoImpl implements IUserDao{
 			
 		}
 		return false;
+	}
+	public ArrayList<User> getUsers() {
+		// todo : get the tasks of the user together
+		ArrayList<User> users = new ArrayList<User>();
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con =
+					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
+			Statement statement = con.createStatement();
+			String query = "select * from User " ;
+			ResultSet res = statement.executeQuery(query);
+			while(res.next()){
+				User t = new User();
+				
+				t.setId(res.getString("userId"));
+				t.setName(res.getString("userName"));
+				t.setPwd(res.getString("UserPwd"));
+				t.setRegisterTime("registerTime");
+				
+				t.setUserLevel(res.getInt("userLevel"));
+				t.setUserScore(res.getInt("userScore"));
+				t.setUserRole(res.getInt("userRole"));
+				t.setUserStatus(res.getInt("userStatus"));
+				t.setUserMoney(res.getInt("userMoney"));
+				t.setUserEmailAddr(res.getString("userEmailAddr"));
+				t.setUserEmailPwd(res.getString("userEmailPwd"));
+				t.setUserWeiboId(res.getString("userWeiboId"));
+				t.setUserWeiboAccessToken("userWeiboAccessToken");
+				t.setUserWeiboPwd("userWeiboPwd");
+				
+				users.add(t);
+			}
+			return users;
+		}
+		catch(ClassNotFoundException e){
+			
+		}
+		catch(SQLException ee){
+			
+		}
+		return null; 
 	}
 }

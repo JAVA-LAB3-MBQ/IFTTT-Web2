@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import weibo.ForWeibo;
 public class ThenThatSendWeibo extends ThenThat{
 	private String thatWeiboId;
 	private String thatWeiboAccessToken;
-	private String thatWeiboPwd;
 	private String thatWeiboContent;
 
 	public ThenThatSendWeibo() {
@@ -19,15 +18,40 @@ public class ThenThatSendWeibo extends ThenThat{
 	
 	public ThenThatSendWeibo(String userId, String weiboContent) {
 		// todo: get user's weiboId and accessToken, weibopwd
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    
+	    	Statement statement1 = con.createStatement();
+	    	String query1 = "select userWeiboAccessToken from User where userId = \"" + userId + "\"";
+	    	System.out.println(query1);
+	    	ResultSet res1 = statement1.executeQuery(query1);
+	    	if(res1.next()){
+		    	thatWeiboAccessToken = res1.getString("userWeiboAccessToken");
+	    	}
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed!");    
+	    	se.printStackTrace() ;    
+	     }  
 		thatWeiboContent = weiboContent;
-		
 		this.setThatType(ThenThat.thatSendWeiboTypeValue);
 		this.setThatInfo("Send Weibo: content-" + thatWeiboContent);
 	}
 	
 	public boolean doIt() {
 		// todo:
-		return false;
+		System.out.println(thatWeiboAccessToken + "\n" + thatWeiboContent);
+		ForWeibo tmp = new ForWeibo(thatWeiboAccessToken);
+		tmp.UpdateStatus(thatWeiboContent);
+		return true;
 	}
 	
 	public String getThatWeiboId(){
@@ -35,9 +59,6 @@ public class ThenThatSendWeibo extends ThenThat{
 	}
 	public String getThatWeiboAccessToken(){
 		return thatWeiboAccessToken;
-	}
-	public String getThatWeiboPwd(){
-		return thatWeiboPwd;
 	}
 	public String getThatWeiboContent(){
 		return thatWeiboContent;
@@ -48,9 +69,6 @@ public class ThenThatSendWeibo extends ThenThat{
 	}
 	public void setThatWeiboAccessToken(String thatWeiboAccessToken){
 		this.thatWeiboAccessToken = thatWeiboAccessToken;
-	}
-	public void setThatWeiboPwd(String thatWeiboPwd){
-		this.thatWeiboPwd = thatWeiboPwd;
 	}
 	public void setThatWeiboContent(String thatWeiboContent){
 		this.thatWeiboContent = thatWeiboContent;

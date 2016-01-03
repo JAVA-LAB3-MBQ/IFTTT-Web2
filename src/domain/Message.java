@@ -1,5 +1,5 @@
 package domain;
-
+import java.util.ArrayList;
 public class Message {
 	String messageId;
 	String fromUserId;
@@ -20,10 +20,10 @@ public class Message {
 	public String getMessageId(){
 		return messageId;
 	}
-	public String getFromUserId(){
+	public String getMessageFromUserId(){
 		return fromUserId;
 	}
-	public String getToUserId(){
+	public String getMessageToUserId(){
 		return toUserId;
 	}
 	
@@ -35,6 +35,12 @@ public class Message {
 	}
 	public void setMessageId(String mId){
 		messageId = mId;
+	}
+	public void setMessageFromUserId(String fromUser){
+		this.fromUserId = fromUser;
+	}
+	public void setMessageToUserId(String toUser){
+		this.toUserId = toUser;
 	}
 	public void setMessageContent(String c){
 		messageContent = c;
@@ -50,4 +56,5 @@ public class Message {
 		dao.impl.MessageDaoImpl t = new dao.impl.MessageDaoImpl();
 		return t.removeMessage(this);
 	}
+	
 }
