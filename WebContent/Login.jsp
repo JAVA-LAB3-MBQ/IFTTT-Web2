@@ -5,74 +5,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
-<style type = "text/css">
-	#id  {width:200px;height:20px;}
-	#pwd {width:200px;height:20px;}
-	.button {font-size:125%;font-family:"Arial";background-color:#f0f8ff;}
-	#login_in_btn {font-family:"Arial";background-color:#F8F8F8;}
-	#tips {font-size:125%;}
-	#sign_info {font-size:20px;}
-	label {font-size:125%;}
-	body {background-repeat: no-repeat;
-		  background-attachment:fixed;
-		  background-size:100% 100%;
-		  font-family: "Arial";}
-	div#login-inner {position:absolute;
-	                 left:100px;
-	                 top:160px;
-	                 width:400px;}
-	div#title_pic {position:absolute;
-	                 left:8px;
-	                 top:35px;
-	                 width:400px;}
-    div#copyright {position:absolute;
-	                 left:50%;
-	                 top:95%;
-	                 text-align:center;}
-	span#login_in_tip{position:absolute;
-	                 left:60%;
-	                 top:8%;
-	                 font-size:75%;}
-</style>
+<link rel="stylesheet" type="text/css" href="mainNew.css"/>
 </head>
-	<body style = "text-align: center">
-		<div id="title_pic">
-				<img src="${pageContext.request.contextPath}/imag/logo.jpg">
+	<body>
+		<div class="header">
+				<img src="${pageContext.request.contextPath}/imag/logo.jpg" alt="IFTTT">
 				<img src = "${pageContext.request.contextPath}/imag/title_line.png">
-				<label id = "sign_info">sign in</label>
-				<img src="${pageContext.request.contextPath}/imag/line.png">
-		</div>
-		<span id="login_in_tip">
-			<label id="tips">Don't have an account? </label>
-			<a href = "Register.jsp">
-			<button type="button" class="button" id="login_in_btn">Sign up</button>
-			</a>
+				<span>sign in</span>
+				<span class="loginInTip">
+		               <label>Don't have an account? </label>
+			       <a href = "Register.jsp">
+			       <button type="button" class="button">Sign up</button>
+			       </a>
 		</span>
-		<div id = "login-inner">
-			<form action = "${pageContext.request.contextPath}/servlet/
-					RegisterServlet" method = "post">	
-				<p>
-					<label>Username：</label>
+			<img src="${pageContext.request.contextPath}/imag/line.jpg">
+		</div>
+		<div class="Wrapper">
+		<div class = "infoInputSignIn">
+			<form action = "${pageContext.request.contextPath}/LoginServlet" method = "post">	
+			<label>Username：</label>
 					<input type = "text" id = "id" >
-				</p>
-					<br>
-				<p>
 					<label>Password：</label>
-					<input type = "password" id = "pwd"  >
-				</p>
-					<br>
-				<p id = "login_btn">
-					<span id = "button">
-						&nbsp;&nbsp;&nbsp;&nbsp;<input type = "button"  class = "button" id = "reset" value = "reset" 
+					&nbsp;<input type = "password" id = "pwd" >
+					<span >
+						<input type = "button"  class = "button" id = "reset" value = "Reset" style="margin-left:50px;"
 						onclick = "window.location.href = 'Login.jsp'">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="${pageContext.request.contextPath}/servlet/LoginUIServlet">
-						<button type = "submit" class = "button" id = "register">sign in</button>
+						<button type = "submit" class = "button" id = "register" style="margin-left:70px;">Sign in</button>
 						</a>
-					</span>
-				</p>	
+					</span>	
 		</form>
 		</div>	
-		<div id="copyright">2015©MBQ</div>
+		<div class="foot">2015©MBQ</div>
 	</body>
 </html>

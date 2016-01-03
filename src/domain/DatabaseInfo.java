@@ -5,6 +5,6 @@ public class DatabaseInfo {
 	
 //	:3306
     public static String username = "root" ;    
-    public static String password = "950318" ; 
+    public static String password = "5555" ; 
 	
 }

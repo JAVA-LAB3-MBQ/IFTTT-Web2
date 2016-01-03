@@ -8,10 +8,28 @@ public class ATaskFormBean {
 	private String thisIconPath, thatIconPath;
 	private String listenWbId, listenWbText, listenTimeLen, listenWbPwd;
 	private String destMailAddr, sendContent;
-    private String goalTime;
+    private String date, time;
     private String thisType, thatType;
     private String taskId;
     
+    public void printAll() {
+    	System.out.println("userId:" + this.getUserId());
+    	System.out.println("thisIconPath:" + this.getThisIconPath());
+    	System.out.println("thatIconPath:" + this.getThatIconPath());
+    	System.out.println("listenWbId:" + this.getListenWbId());
+    	System.out.println("listenWbText:" + this.getListenWbText());
+    	System.out.println("listenTimeLen:" + this.getListenTimeLen());
+    	System.out.println("listenWbPwd:" + this.getListenWbPwd());
+    	System.out.println("goalTime:" + this.getGoalTime());
+    	System.out.println("destMailAddr:" + this.getDestMailAddr());
+    	System.out.println("sendContent:" + this.getSendContent());
+    	System.out.println("thisType:" + this.getThisType());
+    	System.out.println("thatType:" + this.getThatType());
+    	System.out.println("taskId:" + this.getTaskId());
+    }
+    public String getGoalTime() {
+    	return date + " " + time;
+    }
     public String getListenWbPwd() {
     	return listenWbPwd;
     }
@@ -84,14 +102,21 @@ public class ATaskFormBean {
     	sendContent = sc;
     }
 
-    public String getGoalTime() {
-    	return goalTime;
+    public String getDate() {
+    	return date;
     }
     
-    public void setGoalTime(String gt) {
-    	goalTime = gt;
+    public void setDate(String d) {
+    	date = d;
     }
     
+    public String getTime() {
+    	return time;
+    }
+    
+    public void setTime(String t) {
+    	time = t;
+    }
     public String getThisType() {
     	return thisType;
     }

@@ -29,6 +29,7 @@ public class UserTasksUIServlet extends HttpServlet {
     }
     // test
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	System.out.println("enter UserTasksUIServlet: userId: "+request.getParameter("UserId"));
     	UserTasksFormBean formbean = new UserTasksFormBean();
     	
     	// tasks for test

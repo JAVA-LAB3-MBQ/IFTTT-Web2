@@ -20,10 +20,8 @@ public class WebUtils {
 			T bean = clazz.newInstance();
 			Enumeration<String> e = request.getParameterNames(); 
 			while(e.hasMoreElements()){
-				System.out.println("WebUtils 21");
 				String name = (String) e.nextElement();
 				String value = request.getParameter(name);
-				System.out.println(name + value);
 				BeanUtils.setProperty(bean, name, value);
 			}
 			return bean;

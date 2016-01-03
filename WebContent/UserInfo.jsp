@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>UseInfo setting</title>
+    <title>View UseInfo</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -38,9 +38,9 @@ function jump2Servlet(destServlet) {
 </script>
 </head>
 <body>
-	<div class ="header" >
-    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
-    <span class="header_info">Do Some Services for You</span>
+	<div class="header" >
+    <img src="imag/logo.jpg">
+    <span>Do Some Services for You</span>
     <div id="menus">
             <ul>
                 <li>
@@ -72,47 +72,48 @@ function jump2Servlet(destServlet) {
     <img src="imag/line.jpg" />
 </div>
 	<div class= "Wrapper">
-		   <div class="editUserinfo" style = "margin-left:100px; margin-top:80px;font-size:125%;">
-		<form accept-charset = "UTF-8" action = "${pageContext.request.contextPath}/EditUserInfoServlet" 
-			class = "edit_userinfo" id = "edit_user_info" method = "get">
+		<div class="viewUserinfo" style = "margin-left:100px; margin-top:80px;font-size:125%;">
+		<form accept-charset = "UTF-8" action = "${pageContext.request.contextPath}/servlet/
+					EditUserInfoUIServlet"  id = "edit_user_info" method = "get">
 				<p>
-					<label>Name</label>
+					<label>UserName</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type = "text" id = "userName" value = "${formbean.userName}" style = " width:180px ;height:28px;">
-					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
+					<input type = "text" id = "userName" value = "${formbean.userName}" style = "border-width:0;">
+					<img src = "imag/line.jpg" class = "line">
 				</p>
 				<p>
-					<label>Mail</label>
+					<label>UserMail</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          			<input type = "text" id = "userMail" value = "${formbean.userMail}" style = " width:180px ;height:28px;">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<label>Mail password</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userMailPwd" id = "userMailPwd" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
-					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
+          			<input type = "text" id = "userMail" value = "${formbean.userMail}" style = "border-width:0;">
+					<img src = "imag/line.jpg" class = "line">
 				</p>
 				<p>
-					<label>Weibo</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userWeiboId" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
-            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<label>Weibo password</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userWeiboPwd" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
-            		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
+					<label>UserWeibo</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}"  style = "border-width:0;">
+            		<img src = "imag/line.jpg" class = "line">
             	</p>
             	<p>
-
-					<label>Money</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
-            		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
+					<label>UserScore</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" id = "userScore" value = "${formbean.userScore}"  style = "border-width:0;">
+            		<img src = "imag/line.jpg" class = "line">
             	</p>
-				<p style"position:fixed; left: 200px; bottom: 50px ;" >
-					<input type="image" src="${pageContext.request.contextPath}/imag/commit.png" alt="Submit" />
-				</p>	
+            	<p>
+					<label>UserLevel</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" id = "userLevel" value = "${formbean.userLevel}"  style = "border-width:0;">
+            		<img src = "imag/line.jpg" class = "line">
+            	</p>
+            	<p>
+					<label>UserMoney</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" id = "userMoney" value = "${formbean.userMoney}"  style = "border-width:0;">
+            		<img src = "imag/line.jpg" class = "line">
+            	</p>	
 		</form>
-	</div>
+		</div>
+		</div>
 </body>
 	<div class="foot">2015©MBQ</div>
 </html>
