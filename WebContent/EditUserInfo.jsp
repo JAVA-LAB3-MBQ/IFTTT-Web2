@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="ifttt page">
-	<link rel="stylesheet" type="text/css" href="main.css"/>
+	<link rel="stylesheet" type="text/css" href="mainNew.css"/>
 	<style>
 	div#logo{
          position:absolute;
@@ -95,6 +95,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-size:21px;
         }
         </style>
+<script>
+function jump2Servlet(destServlet) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    alert(ftemp.action);
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = '${formbean.userId}';
+    ftemp.appendChild(uidParam);
+    
+    document.body.appendChild(ftemp);
+    alert("submit");
+    ftemp.submit(); // jump
+}
+</script>
 </head>
 <body>
 	<div class ="logo" >
@@ -109,72 +128,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div id="menus">
             <ul>
-                <li><a href="a.jsp">Task</a>
-                <ul>
-                    <li>
-                        <a href="a1.jsp">View Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Creat Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Edit Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Delete Task</a>
-                    </li>
-                </ul>
+                <li>
+                	<a href="" onclick="jump2Servlet('UserTasksUIServlet'); return false">
+                	Task
+                	</a>
                 </li>
-                <li><a href="b.jsp">Account</a>
+                <li><a href=#>Account</a>
                 <ul>
                     <li>
-                        <a href="a2.jsp">View</a>
+                        <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">
+                        View
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Edit</a>
+                        <a href="" onclick="jump2Servlet('EditUserInfoUIServlet'); return false">
+                        Edit
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Sign out</a>
+                        <a href="" onclick="jump2Servlet('SignOutServlet'); return false">
+                        Sign out
+                        </a>
                     </li>
                 </ul>
                 </li>
             </ul>
     </div>
 	<div class = "info-inner">
-		<form accept-charset = "UTF-8" action = "${pageContext.request.contextPath}/servlet/
-					EditUserInfoUIServlet" class = "edit_userinfo" id = "edit_user_info" method = "get">
+		<form accept-charset = "UTF-8" action = "${pageContext.request.contextPath}/EditUserInfoServlet" 
+			class = "edit_userinfo" id = "edit_user_info" method = "get">
 				<p>
-					<label>UserName</label>
+					<label>Name</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type = "text" id = "userName" value = "${formbean.userName}">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
-					<label>UserMail</label>
+					<label>Mail</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           			<input type = "text" id = "userMail" value = "${formbean.userMail}" width = "59" height = "40">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
-					<label>UserWeibo</label>
+					<label>Weibo</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
-					<label>UserScore</label>
+					<label>Weibo password</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
-					<label>UserLevel</label>
+					<label>Level</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
-					<label>UserMoney</label>
+					<label>Money</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+<link rel="stylesheet" type="text/css" href="mainNew.css"/>
 <style type = "text/css">
 	#id  {width:200px;height:20px;}
 	#pwd {width:200px;height:20px;}
@@ -37,20 +38,19 @@
 </head>
 	<body style = "text-align: center">
 		<div id="title_pic">
-				<img src="${pageContext.request.contextPath}/imag/logo.jpg">
+				<img src="${pageContext.request.contextPath}/imag/logo.jpg" alt="IFTTT">
 				<img src = "${pageContext.request.contextPath}/imag/title_line.png">
 				<label id = "sign_info">sign in</label>
-				<img src="${pageContext.request.contextPath}/imag/line.png">
+				<img src="${pageContext.request.contextPath}/imag/line.jpg">
 		</div>
 		<span id="login_in_tip">
 			<label id="tips">Don't have an account? </label>
 			<a href = "Register.jsp">
-			<button type="button" class="button" id="login_in_btn">Sign up</button>
+			<button type="button" class="button" id="register">Sign up</button>
 			</a>
 		</span>
 		<div id = "login-inner">
-			<form action = "${pageContext.request.contextPath}/servlet/
-					RegisterServlet" method = "post">	
+			<form action = "${pageContext.request.contextPath}/LoginServlet" method = "post">	
 				<p>
 					<label>Username：</label>
 					<input type = "text" id = "id" >
@@ -66,9 +66,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;<input type = "button"  class = "button" id = "reset" value = "reset" 
 						onclick = "window.location.href = 'Login.jsp'">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="${pageContext.request.contextPath}/servlet/LoginUIServlet">
-						<button type = "submit" class = "button" id = "register">sign in</button>
-						</a>
+						<button type = "submit" class = "button" id = "login">sign in</button>
 					</span>
 				</p>	
 		</form>

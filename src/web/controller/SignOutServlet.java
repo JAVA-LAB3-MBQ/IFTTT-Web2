@@ -26,12 +26,14 @@ public class SignOutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("signing out");
 		// get userid
 		String userId = request.getParameter("userId");
+		System.out.println(userId);
 		
 		// sign out
 		UserServiceImpl uservice = new UserServiceImpl();
-		uservice.signOut(userId);
+		//uservice.signOut(userId);
 		
 		// jump 
 		request.getRequestDispatcher("/guide.jsp").forward(request, response);

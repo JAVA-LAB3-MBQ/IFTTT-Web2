@@ -7,10 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
+     <base href="<%=basePath%>">
     
     <title>UserMain</title>
-    
+    <link rel="stylesheet" type="text/css" href="mainNew.css"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -125,6 +125,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-size:21px;
         }
         </style>
+<script>
+function jump2Servlet(destServlet) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    alert(ftemp.action);
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = '${formbean.userId}';
+    ftemp.appendChild(uidParam);
+    
+    document.body.appendChild(ftemp);
+    alert("submit");
+    ftemp.submit(); // jump
+}
+</script>
 </head>
 <body>
 <div id="logo" >
@@ -133,32 +152,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
     <div id="menus">
             <ul>
-                <li><a href="a.jsp">Task</a>
-                <ul>
-                    <li>
-                        <a href="a1.jsp">View Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Create Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Edit Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Delete Task</a>
-                    </li>
-                </ul>
+                <li><a href="" onclick="jump2Servlet('UserTasksUIServlet'); return false">
+                	Task
+                	</a>
                 </li>
-                <li><a href="b.jsp">Account</a>
+                <li><a href=#>Account</a>
                 <ul>
                     <li>
-                        <a href="a2.jsp">View</a>
+                        <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">
+                        View
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Edit</a>
+                        <a href="" onclick="jump2Servlet('EditUserInfoUIServlet'); return false">
+                        Edit
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Sign out</a>
+                        <a href="" onclic="jump2Servlet('SignOutServlet'); return false">
+                        Sign out
+                        </a>
                     </li>
                 </ul>
                 </li>

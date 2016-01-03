@@ -27,10 +27,17 @@ public class CreateTaskServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    // test 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("enter CreateTaskServlet, line 32");
+    	ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
+		String userId = form.getUserId();
+		form.printAll();
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
 		String userId = form.getUserId();
 		
@@ -92,7 +99,7 @@ public class CreateTaskServlet extends HttpServlet {
 		
 	  // jump to UserTasks.jsp
 	  request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
-	}
+	}*/
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

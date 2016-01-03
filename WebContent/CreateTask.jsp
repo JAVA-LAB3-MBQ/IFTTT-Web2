@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
     <title>Create Task</title>
-    <link rel="stylesheet" type="text/css" href="taskmain.css" />
+    <link rel="stylesheet" type="text/css" href="mainNew.css"/>
     <script type="text/javascript" src="jquery-2.1.4.js"></script>
     <style type = "text/css">
 	div#logo{
@@ -88,40 +88,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-size:21px;
         }
         </style>
-   </head>
+<script>
+function jump2Servlet(destServlet) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    alert(ftemp.action);
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = '${formbean.userId}';
+    ftemp.appendChild(uidParam);
+    
+    document.body.appendChild(ftemp);
+    alert("submit");
+    ftemp.submit(); // jump
+}
+</script>
+</head>
 <body>
 	<div id="logo" >
-    <img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/logo.jpg">
+    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
     <span class="head_tips">Do Some Services for You</span>
 	</div>
     <div id="menus">
             <ul>
-                <li><a href="a.jsp">Task</a>
-                <ul>
-                    <li>
-                        <a href="a1.jsp">View Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Create Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Edit Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Delete Task</a>
-                    </li>
-                </ul>
+                <li><a href="" onclick="jump2Servlet('UserTasksUIServlet'); return false">Task</a>
                 </li>
-                <li><a href="b.jsp">Account</a>
+                <li><a href=#>Account</a>
                 <ul>
                     <li>
-                        <a href="a2.jsp">View</a>
+                        <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">View</a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Edit</a>
+                        <a href="" onclick="jump2Servlet('EditTaskUIServlet'); return false">Edit</a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Sign out</a>
+                        <a href="" onclick="sjump2Servlet('SignOutServlet'); return false">Sign out</a>
                     </li>
                 </ul>
                 </li>
@@ -129,14 +134,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="contentbody">
         <div class="title_pics">
-            <img src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/imag/line.jpg">
+            <img src="${pageContext.request.contextPath}/imag/line.jpg">
             <div id="title_tips">
                 &nbsp;&nbsp;&nbsp;&nbsp;Create a Recipe
             </div>
          </div>
         
-        <form accept-charset="UTF-8" action="${pageContext.request.contextPath}/servlet/
-					CreatTaskServlet" class="creat_task" id="creat_task_form" method="post">
+        <form accept-charset="UTF-8" action="${pageContext.request.contextPath}/CreateTaskServlet" 
+        class="creat_task" id="creat_task_form" method="post">
             <div class="choose_trigger">
                 <label>Choose trigger</label>
                 <img src="${pageContext.request.contextPath}/imag/line.jpg">
@@ -153,12 +158,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="show_window_time" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date：<input type="date" name="" id="input_day" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time：<input type="time" name="" id="input_min" class="ipt" /><br />
-                        <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
-                         &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  id="submitBtn_time" value="commit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date：<input type="date" name="date" id="input_day" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time：<input type="time" name="time" id="input_min" class="ipt" /><br />
+                        <input type="hidden" name="userId" value="${formbean.userId}" />
+                        <input type="hidden" name="thisType" value="TIME" />
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="submitBtn_time" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button"  id="cancelBtn_time" value="cancle">
+                        <input type="button" id="cancelBtn_time" value="cancle">
                                                      
                     </form>
                 </div>
@@ -168,21 +174,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <form action="" method="post" id="editForm_mail">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mail：<input type="email" name="" id="input_email" class="ipt" /><br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_mail_pwd" class="ipt" /><br />
-                        <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
-                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_mail" value="commit">
+                        <input type="hidden" name="userId" value="${formbean.userId}" />
+                        <input type="hidden" name="thisType" value="RECEIVE_MAIL" />
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="submitBtn_mail" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" id="cancelBtn_mail" value="cancle">
-
                     </form>
                 </div>
             </div>
             <div id="show_window_weibo" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm_mail">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="" id="input_weibo_id" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_weibo_pwd" class="ipt" /><br />
-                        <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
-                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_weibo" value="commit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="listenWeiboId" id="input_weibo_id" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="listenWeiboPwd" id="input_weibo_pwd" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="text" name="listenWeiboText" id="input_weibo_pwd" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time length：<input type="text" name="listenWeiboTimeLen" id="input_weibo_pwd" class="ipt" /><br />
+                        <input type="hidden" name="userId" value="${formbean.userId}" />
+                        <input type="hidden" name="thisType" value="LISTEN_WEIBO" />
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="submitBtn_weibo" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" id="cancelBtn_weibo" value="cancle">
 
@@ -192,10 +201,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div id="show_window_mail_send" style="display:none">
                 <div class="window_form">
                     <form action="" method="post" id="editForm_mail">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mail：<input type="email" name="" id="input_send_email" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="text" name="" id="input_send_context" class="ipt" /><br />
-                        <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
-                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_send_mail" value="commit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To：<input type="email" name="destMailAddr" id="input_send_email" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="text" name="sendContent" id="input_send_context" class="ipt" /><br />
+                        <input type="hidden" name="userId" value="${formbean.userId}" />
+                        <input type="hidden" name="thatType" value="SEND_MAIL" />
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="submitBtn_send_mail" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" id="cancelBtn_send_mail" value="cancle">
 
@@ -207,12 +217,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <form action="" method="post" id="editForm_mail">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WeiboID：<input type="text" name="" id="input_weibo_send_id" class="ipt" /><br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contend：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
-                        <!--&nbsp;&nbsp;&nbsp;<input type="submit" value="确认" class="submitBtn" />-->
-                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="submitBtn_weibo_send" value="commit">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Content：<input type="text" name="sendContent" id="input_weibo_send_pwd" class="ipt" /><br />
+                        <input type="hidden" name="userId" value="${formbean.userId}" />
+                        <input type="hidden" name="thatType" value="SEND_WEIBO" />
+                        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="submitBtn_weibo_send" value="commit">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="button" id="cancelBtn_weibo_send" value="cancle">
-
                     </form>
                 </div>
             </div>
@@ -230,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </form>
     </div>
-    <br>
+    <br/>
     <script type="text/javascript">
         document.getElementById("clock_pic").addEventListener("click", function () { $("#show_window_time").show(); });
         document.getElementById("cancelBtn_time").addEventListener("click", function () { $("#show_window_time").hide(); });

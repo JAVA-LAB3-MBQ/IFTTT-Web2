@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
+<link rel="stylesheet" type="text/css" href="mainNew.css"/>
+<style type = "text/css">
+	body {
+		  background-repeat: no-repeat;
+		  background-attachment:fixed;
+		  background-size:100% 100%;
+		   font-family: "Arial";}
+</style>
 <style type = "text/css">
 	#id  {width:300px;height:25px;}
 	#pwd {width:300px;height:25px;}
@@ -42,7 +50,7 @@
 				<img src="${pageContext.request.contextPath}/imag/logo.jpg">
 				<img src = "${pageContext.request.contextPath}/imag/title_line.png">
 				<label id = "signup_info">sign up</label>
-				<img src="${pageContext.request.contextPath}/imag/line.png">
+				<img src="${pageContext.request.contextPath}/imag/line.jpg">
 		</div>
 		<span id="sign_in_tip">
 			<label id="tips">Already have an count?</label>
@@ -51,8 +59,7 @@
 			</a>
 		</span>
 		<div id = "login-inner">
-		<form action = "${pageContext.request.contextPath}/servlet/
-			RegisterServlet" method = "post">
+		<form action = "${pageContext.request.contextPath}/RegisterServlet" method = "post">
 			<p>
 				<label>Username：&nbsp;&nbsp;&nbsp;</label>
 				<input type = "text" name = "userName"  value = "${formbean.userName}" style = "height: 20px ;width: 200px">${formbean.errors.userName} 
@@ -65,7 +72,7 @@
 				<br>
 			<p>
 				<label>&nbsp;&nbsp;Confirm：&nbsp;&nbsp;&nbsp;</label>
-				<input type = "text" name = "confirmPwd"  value = "${formbean.confirmPwd}" style = "height: 20px ;width: 200px">${formbean.errors.confirmPwd}
+				<input type = "password" name = "confirmPwd"  value = "${formbean.confirmPwd}" style = "height: 20px ;width: 200px">${formbean.errors.confirmPwd}
 			</p>
 				<br>
 			<p id = "login_btn">
