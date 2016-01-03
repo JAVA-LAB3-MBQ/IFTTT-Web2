@@ -202,7 +202,7 @@ function jump2UserServlet(destServlet) {
     <div id="menus">
         <ul>
             <li>
-    s            <a href=#>Account</a>
+                <a href=#>Account</a>
                 <ul>
                     <li>
                         <a href="" onclick="jump2UserServlet('UserInfoUIServlet'); return false">View</a>
@@ -223,8 +223,8 @@ function jump2UserServlet(destServlet) {
     </div> 
     <div class="Wrapper"> 
     	<div class="title_tips" id="taskNum">
-	  Your Tasks
-	</div>
+	  	Your Tasks
+	  	</div>
     <div class="TaskContatiner">
         <ul id="taskList">
             <li>
@@ -323,7 +323,7 @@ function jump2UserServlet(destServlet) {
         <button id="pre_page" onclick="lastPage()">上一页</button>
         <button id="next_page" onclick="nextPage()">下一页</button>
     </div>
-    <div style="float:right;margin-top:10px;margin-right:10px;">
+    <div style="float:right;margin-top:100px;margin-right:50px;">
         <a href="#"><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
     </div>
     </div>

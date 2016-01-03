@@ -7,7 +7,7 @@ public class ATaskFormBean {
 	private String userId, taskName;
 	private String thisIconPath, thatIconPath;
 	private String listenWbId, listenWbText, listenTimeLen, listenWbPwd;
-	private String destMailAddr, sendContent;
+	private String destMailAddr, sendMailContent, sendWeiboContent;
     private String date, time;
     private String thisType, thatType;
     private String taskId;
@@ -22,7 +22,8 @@ public class ATaskFormBean {
     	System.out.println("listenWbPwd:" + this.getListenWbPwd());
     	System.out.println("goalTime:" + this.getGoalTime());
     	System.out.println("destMailAddr:" + this.getDestMailAddr());
-    	System.out.println("sendContent:" + this.getSendContent());
+    	System.out.println("sendMailContent:" + this.getSendMailContent());
+    	System.out.println("sendWeiboContent:" + this.getSendWeiboContent());
     	System.out.println("thisType:" + this.getThisType());
     	System.out.println("thatType:" + this.getThatType());
     	System.out.println("taskId:" + this.getTaskId());
@@ -38,6 +39,18 @@ public class ATaskFormBean {
     	listenWbPwd = p;
     }
     
+    public String getSendMailContent() {
+    	return sendMailContent;
+    }
+    public void setSendMailContent(String c) {
+    	sendMailContent = c;
+    }
+    public String getSendWeiboContent() {
+    	return sendWeiboContent;
+    }
+    public void setSendWeiboContent(String c) {
+    	sendWeiboContent = c;
+    }
     public String getUserId() { 
     	return userId; 
     }
@@ -92,14 +105,6 @@ public class ATaskFormBean {
     
     public void setDestMailAddr(String dma) {
     	destMailAddr = dma;
-    }
-    
-    public String getSendContent() {
-    	return sendContent;
-    }
-    
-    public void setSendContent(String sc) {
-    	sendContent = sc;
     }
 
     public String getDate() {

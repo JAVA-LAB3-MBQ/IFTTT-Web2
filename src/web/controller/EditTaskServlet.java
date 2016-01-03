@@ -75,11 +75,11 @@ public class EditTaskServlet extends HttpServlet {
 	    // that
 	    switch(thatType) {
 	    case ThenThat.thatSendMailTypeValue: {
-		    that_ = new ThenThatSendMail(userId, form.getDestMailAddr(), form.getSendContent());
+		    that_ = new ThenThatSendMail(userId, form.getDestMailAddr(), form.getSendMailContent());
 		    break;
 	    }
 	    case ThenThat.thatSendWeiboTypeValue: {
-		    that_ = new ThenThatSendWeibo(userId, form.getSendContent());
+		    that_ = new ThenThatSendWeibo(userId, form.getSendWeiboContent());
 		    break;
 	    }
 	    default: System.out.println("Unknown ThatType");
