@@ -18,24 +18,64 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import domain.IfThisTime;
+import domain.Message;
+import domain.IfThisListenWeibo;
 import domain.ThenThatSendMail;
+import domain.ThenThatSendWeibo;
+import thread.TaskThread;
 public class UserServiceImpl implements IUserService {
-    public static void main(String args[]){
-//    	TaskDaoImpl m = new TaskDaoImpl();
-//    	ArrayList<Task> arr = m.getTasks("61");
-//    	for(int i = 0; i < arr.size(); i ++){
-//    		System.out.println(arr.get(i).getTaskId() + arr.get(i).getTaskName());
-//    	}
+    public static void main(String args[]){   
+    	//添加user
+//    	User user1 = new User();
+//    	user1.setId("u1");
+//    	user1.setName("userone");
+//    	user1.setUserEmailAddr("547504175@qq.com");
+//    	user1.setUserEmailPwd("cozzrzxvntiebcdh");
+//    	user1.setUserWeiboAccessToken("2.005a9yjB986STE65c5541eadH2CkfD");
+//    	UserDaoImpl utmp = new UserDaoImpl();
+//    	utmp.add(user1);
+//    	微博->邮件
+//    	TaskServiceImpl t = new TaskServiceImpl();
+//    	IfThis thisWeibo = new IfThisListenWeibo("u1","一年又一年");
+//    	thisWeibo.setThisId("this1");
+//    	thisWeibo.setThisType(IfThis.thisListenWeiboTypeValue);
+//    	thisWeibo.setThisInfo("if send weibo 一年又一年");
+//    	ThenThat thatSendMail = new ThenThatSendMail("u1","547504175@qq.com","微博->邮件");
+//    	thatSendMail.setThatId("that1");
+//    	thatSendMail.setThatType(ThenThat.thatSendMailTypeValue);
+//    	t.addTask("u1","task1","thatone",thisWeibo,thatSendMail);
+//    	t.startTask("task1");
 //    	
+//    	//邮件->微博
+//    	TaskServiceImpl t = new TaskServiceImpl();
+//    	IfThis thisMail = new IfThisReceiveMail("u1");
+//    	thisMail.setThisId("this2");
+//    	thisMail.setThisType(IfThis.thisReceiveMailTypeValue);
+//    	thisMail.setThisInfo("if this receive mail");
+//    	ThenThat thatWeibo = new ThenThatSendWeibo("u1","= =");
+//    	thatWeibo.setThatId("that2");
+//    	thatWeibo.setThatType(ThenThat.thatSendWeiboTypeValue);
+//    	t.addTask("u1","task2","thattwo",thisMail,thatWeibo);
+//    	t.startTask("task2");
+    	
+    	//未发微博->邮件
+//    	TaskServiceImpl t = new TaskServiceImpl();
+//    	IfThisListenWeibo thisWeibo = new IfThisListenWeibo("u1");
+//    	thisWeibo.setThisId("this3");
+//    	thisWeibo.setThisType(IfThis.thisListenWeiboTypeValue);
+//    	thisWeibo.setThisInfo("not send weibo");
+//    	thisWeibo.setThisWeiboType(IfThisListenWeibo.IfThisListenWeiboTypeTwo);
+//    	thisWeibo.setThisTimeLen("1");
+//    	
+//    	ThenThat thatSendMail = new ThenThatSendMail("u1","547504175@qq.com","微博->邮件");
+//    	thatSendMail.setThatId("that3");
+//    	thatSendMail.setThatType(ThenThat.thatSendMailTypeValue);
+//    	
+//    	t.addTask("u1","task3","thatone",thisWeibo,thatSendMail);
+//    	t.startTask("task3");
+    	
     	thread.TaskThread thread = new thread.TaskThread();
     	thread.start();
-    	TaskServiceImpl t = new TaskServiceImpl();
-    	IfThis thisMail = new IfThisReceiveMail("61");
-    	thisMail.setThisId("1");
-    	ThenThat thatSendMail = new ThenThatSendMail("61","547504175@qq.com","收到邮件了再发邮件");
-    	thatSendMail.setThatId("2");
-    	t.addTask("61","task-0","task-zero",thisMail,thatSendMail);
-    	t.startTask("task-0");
     	
 //    	IfThis thisTime = new IfThisTime("this7","2015-12-27 21:40");
 //    	ThenThat thatMail = new ThenThatSendMail("61","547504175@qq.com","send a mail ");
@@ -46,7 +86,6 @@ public class UserServiceImpl implements IUserService {
 //		tt.add(new User("61","my4","b","c",6,7,8,9,10,"547504175@qq.com","cozzrzxvntiebcdh","k","l","m"));
 //
 //    	TaskServiceImpl t = new TaskServiceImpl();
-//    
 //    	IfThis this_ = new IfThisTime("2015-12-26 23:37");
 //    	ThenThat that_ = new ThenThatSendMail("61","547504175@qq.com","fighting");
      
@@ -103,10 +142,16 @@ public class UserServiceImpl implements IUserService {
 	public ArrayList<Task> getUserTasks(String userId) {
 		TaskDaoImpl tdb = new TaskDaoImpl();
 		ArrayList<Task> tasks = tdb.getTasks(userId);
-		
 		return tasks;
 	}
-	
+	public ArrayList<Message> getUserMessages(String userId){
+		dao.impl.MessageDaoImpl t = new dao.impl.MessageDaoImpl();
+		return t.getMessages(userId);
+	}
+	public ArrayList<User>  getUserList(){
+		dao.impl.UserDaoImpl t = new dao.impl.UserDaoImpl();
+		return t.getUsers();
+	}
 	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd) {
 		UserDaoImpl udb = new UserDaoImpl();
 		User user = udb.find(uId);

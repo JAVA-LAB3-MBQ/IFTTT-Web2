@@ -65,115 +65,118 @@ public class User implements Serializable{
 	public User(){
 		
 	}
-	
+
+	public void setId(String id){
+		this.userId = id;
+	}
 	public String getUserId(){
 		return userId;
 	}
 	
+	public void setName(String name){
+		this.userName = name;
+	}
 	public String getName(){
 		return userName;
+	}
+
+	
+	public void setPwd(String pwd){
+		this.userPwd = pwd;
 	}
 	
 	public String getPwd(){
 		return userPwd;
 	}
 	
-	public String getRegisterTime(){
-		return registerTime;
-	}
-	
-	public void setId(String id){
-		this.userId = id;
-	}
-	
-	public void setName(String name){
-		this.userName = name;
-	}
-	
-	public void setPwd(String pwd){
-		this.userPwd = pwd;
-	}
-	
 	public void setRegisterTime(String registerTime){
 		this.registerTime = registerTime;
 	}
-	public int getUserLevel() {
-		return userLevel;
+	
+	public String getRegisterTime(){
+		return registerTime;
 	}
 	
 	public void setUserLevel(int l) {
 		userLevel = l;
 	}
-	
-	public int getUserScore() {
-		return userScore;
+	public int getUserLevel() {
+		return userLevel;
 	}
+	
 	
 	public void setUserScore(int s) {
 		userScore = s;
 	}
-	
-	public int getUserRole() {
-		return userRole;
+	public int getUserScore() {
+		return userScore;
 	}
 	
 	public void setUserRole(int r) {
 		userRole = r;
 	}
-	
-	public int getUserStatus() {
-		return userStatus;
+	public int getUserRole() {
+		return userRole;
 	}
+	
+	
 	
 	public void setUserStatus(int s) {
 		userStatus = s;
 	}
-	
-	public int getUserMoney() {
-		return userMoney;
+	public int getUserStatus() {
+		return userStatus;
 	}
 	
 	public void  setUserMoney(int m ) {
 		userMoney = m;
 	}
-	
-	public String getUserEmailAddr() {
-		return userEmailAddr;
+	public int getUserMoney() {
+		return userMoney;
 	}
+	
 	
 	public void setUserEmailAddr(String addr) {
 		userEmailAddr = addr;
 	}
-	
-	public String getUserEmailPwd() {
-		return userEmailPwd;
+	public String getUserEmailAddr() {
+		return userEmailAddr;
 	}
+	
 	
 	public void setUserEmailPwd(String p) {
 		userEmailPwd = p;
 	}
-	
-	public String getUserWeiboId() {
-		return userWeiboId;
+	public String getUserEmailPwd() {
+		return userEmailPwd;
 	}
+	
 	
 	public void setUserWeiboId(String id) {
 		userWeiboId = id;
 	}
-	
-	public String getUserWeiboAccessToken() {
-		return userWeiboAccessToken;
+	public String getUserWeiboId() {
+		return userWeiboId;
 	}
+	
 	
 	public void setUserWeiboAccessToken(String token) {
 		userWeiboAccessToken = token;
 	}
+	public String getUserWeiboAccessToken() {
+		return userWeiboAccessToken;
+	}
+	
 	
 	public String getUserWeiboPwd() {
 		return userWeiboPwd;
 	}
-	
 	public void setUserWeiboPwd(String pwd) {
 		userWeiboPwd = pwd;
+	}
+	
+	public ArrayList<Message> getUserMessages(){
+		dao.impl.MessageDaoImpl t = new dao.impl.MessageDaoImpl();
+		return t.getMessages(userId);
 	}
 }

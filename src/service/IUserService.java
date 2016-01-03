@@ -12,7 +12,12 @@ public interface IUserService {
 	
 	public ArrayList<Task> getUserTasks(String userId);
 	
+	public ArrayList<Message> getUserMessages(String userId);
+	
+	public ArrayList<User> getUserList();
+	
 	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd);
 
 	public void signOut(String userId);
+	
 }

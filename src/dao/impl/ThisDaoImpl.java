@@ -12,6 +12,46 @@ import domain.IfThisTime;
 import domain.*;
 import domain.IfThisListenWeibo;
 public class ThisDaoImpl implements IThisDao{
+	public void setEmailCount(IfThisReceiveMail this_, int count){
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    	Statement statement = con.createStatement();  	
+	    	String statementString = "update IfThisReceiveMail set thisEmailCount = " + count + " where thisId = \"" + this_.getThisId() + "\"";
+	    	statement.executeUpdate(statementString);
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed！");    
+	    	se.printStackTrace() ;    
+	     }  
+	}
+	public void setWeiboCount(IfThisListenWeibo this_, long count){
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    	Statement statement = con.createStatement();  	
+	    	String statementString = "update IfThisListenWeibo set thisWeiboCount = " + count + " where thisId = \"" + this_.getThisId() + "\"";
+	    	statement.executeUpdate(statementString);
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed！");    
+	    	se.printStackTrace() ;    
+	     }  
+	}
 	public boolean addThis(IfThisListenWeibo this_) {
 		// todo: add IfThisListWeibo condition to db
 		try{
@@ -27,7 +67,7 @@ public class ThisDaoImpl implements IThisDao{
 	    
 	    	Statement statement = con.createStatement();
 	    	
-	    	String statementString = "insert into IfThisListenWeibo values(\"" + this_.getThisId() + "\",\"" + this_.getThisWeiboId() + "\",\"" + this_.getThisWeiboContent() + "\",\"" + this_.getThisTimeLen() + "\");" ;
+	    	String statementString = "insert into IfThisListenWeibo values(\"" + this_.getThisId() + "\"," + this_.getThisType() + ",\"" + this_.getThisWeiboId() + "\",\"" + this_.getThisWeiboAccessToken() + "\",\"" + this_.getThisWeiboContent() + "\",\""  + this_.getThisWeiboCount() + "\",\"" + this_.getThisTimeLen() + "\"," + this_.getThisWeiboType() + ",\"" + this_.getThisWeiboStartTime() +"\");" ;
 	    	statement.executeUpdate(statementString);
 	     }
 	     catch(SQLException se){    
@@ -52,7 +92,7 @@ public class ThisDaoImpl implements IThisDao{
 	    
 	    	Statement statement = con.createStatement();
 	    	
-	    	String statementString = "insert into IfThisTime values(\"" + this_.getThisId() + "\",\"" + this_.getGoalTime() + "\");" ;
+	    	String statementString = "insert into IfThisTime values(\"" + this_.getThisId() + ",\""  + this_.getThisType() + ",\"" + this_.getGoalTime() + "\");" ;
 	    	statement.executeUpdate(statementString);
 	    	con.close();
 	     }
@@ -80,7 +120,7 @@ public class ThisDaoImpl implements IThisDao{
 	    
 	    	Statement statement = con.createStatement();
 	    	
-	    	String statementString = "insert into IfThisReceiveMail values(\"" + this_.getThisId() + "\",\"" + this_.thisEmailId + "\",\"" + this_.thisEmailPwd + "\");" ;
+	    	String statementString = "insert into IfThisReceiveMail values(\"" + this_.getThisId() + "\"," + this_.getThisType() + ",\"" + this_.thisEmailId + "\",\"" + this_.thisEmailPwd + "\",\"" + this_.getThisEmailCount() + "\");" ;
 	    	//System.out.println(statementString);
 	    	statement.executeUpdate(statementString);
 	     }
@@ -108,7 +148,7 @@ public class ThisDaoImpl implements IThisDao{
 	    	
 	    	String statementString = "delete "
 	    			+ "from IfThisListenWeibo "
-	    			+ "where thisWeiboId = \"" + this_.getThisWeiboId() + "\"";
+	    			+ "where thisId = \"" + this_.getThisId() + "\"";
 	    	statement.executeUpdate(statementString);
 	     }
 	     catch(SQLException se){    
@@ -134,7 +174,7 @@ public class ThisDaoImpl implements IThisDao{
 			String statementString1 = "select * from IfThisTime where goalTime = " + "\"" + this_.getGoalTime() + "\"";
 			if(statement.executeQuery(statementString1) == null ) return false;
 			
-			String statementString = "delete from IfThisTime where goalTime = " + "\"" + this_.getGoalTime() + "\"";
+			String statementString = "delete from IfThisTime where thisId = " + "\"" + this_.getThisId() + "\"";
 			statement.executeUpdate(statementString);
 		}
 		catch(SQLException se){

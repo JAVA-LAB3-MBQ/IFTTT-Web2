@@ -25,7 +25,7 @@ public class ThatDaoImpl implements IThatDao {
 	    
 	    	Statement statement = con.createStatement();
 	    	
-	    	String update = "insert into ThenThatSendMail values(\" " + that_.getThatId() + "\",\""+ that_.getThatWeiboId() + "\",\"" + that_.getThatWeiboAccessToken() + "\",\"" + that_.getThatWeiboPwd() + "\",\"" + that_.getThatWeiboContent() + "\");" ;
+	    	String update = "insert into ThenThatSendWeibo values(\"" + that_.getThatId() + "\"," + that_.getThatType() + ",\"" + that_.getThatWeiboId() + "\",\"" + that_.getThatWeiboAccessToken() + "\",\"" +  that_.getThatWeiboContent() +  "\");" ;
 	    	statement.executeUpdate(update);
 	    	con.close();
 	     }
@@ -50,7 +50,7 @@ public class ThatDaoImpl implements IThatDao {
 	    
 	    	Statement statement = con.createStatement();
 	
-	    	String update = "insert into ThenThatSendMail values(\"" + that_.getThatId() + "\",\""+ that_.getThatSrcEmailId() + "\",\"" + that_.getThatSrcEmailPwd() + "\",\"" + that_.getThatDestEmailId() + "\",\"" + that_.getThatEmailContent() + "\");" ;
+	    	String update = "insert into ThenThatSendMail values(\"" + that_.getThatId() + "\","+ that_.getThatType() + ",\"" + that_.getThatSrcEmailId() + "\",\"" + that_.getThatSrcEmailPwd() + "\",\"" + that_.getThatDestEmailId() + "\",\"" + that_.getThatEmailContent() + "\");" ;
 	    	statement.executeUpdate(update);
 	    	con.close();
 	     }
@@ -74,9 +74,9 @@ public class ThatDaoImpl implements IThatDao {
 			Connection con =
 					DriverManager.getConnection(domain.DatabaseInfo.url, domain.DatabaseInfo.username, domain.DatabaseInfo.password);
 			Statement statement = con.createStatement();
-			String query = "select * from ThenThatSendMail where thatWeiboId = \"" + that_.getThatWeiboId() + "\"" + " && thatWeiboPwd = " + "\"" + that_.getThatWeiboPwd() + "\"" + " && thatWeiboContent = \"" + that_.getThatWeiboContent() + "\"";
+			String query = "select * from ThenThatSendMail where thatWeiboId = \"" + that_.getThatWeiboId() + "\"" +  " && thatWeiboContent = \"" + that_.getThatWeiboContent() + "\"";
 			if(statement.executeQuery(query) == null)return false;
-			String statementString = "delete from ThenThatSendMail where thatWeiboId = \"" + that_.getThatWeiboId() + "\" && thatWeiboPwd = " + "\"" + that_.getThatWeiboPwd() + "\"" + " && thatWeiboContent = \"" + that_.getThatWeiboContent() + "\"" ;
+			String statementString = "delete from ThenThatSendMail where thatWeiboId = \"" + that_.getThatWeiboId() +  "\"" + " && thatWeiboContent = \"" + that_.getThatWeiboContent() + "\"" ;
 			statement.executeUpdate(statementString);
 			con.close();
 		}
@@ -93,7 +93,7 @@ public class ThatDaoImpl implements IThatDao {
 		}
 		catch(ClassNotFoundException e){
 			e.printStackTrace();
-		    System.out.println("Driver Class Not Found, Loader Failure！");  //找不到驱动程序类 ，加载驱动失败
+		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
 		}  
 	    try{ 
 	    	Connection con =     

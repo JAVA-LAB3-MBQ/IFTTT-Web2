@@ -13,10 +13,10 @@ public class Task {
 	private int thisType, thatType;
 	private String thisIconPath;
 	private String thatIconPath;
-	private String thisInfo, thatInfo;
 	
 	private String createTime;
 	private int taskStatus;
+	private String thisInfo, thatInfo;
 	
 	public Task(){
 		createTime = (DateStringUtil.date2String(new Date()));
@@ -93,76 +93,97 @@ public class Task {
 	public String getUserId() {
 		return userId;
 	}
+	public void setUserId(String u){
+		userId = u;
+	}
+	
+	public void setTaskId(String tid){
+		taskId = tid;
+	}
 	public String getTaskId(){
 		return taskId;
+	}
+	
+	public void setTaskName(String t){
+		taskName = t;
 	}
 	public String getTaskName(){
 		return taskName;
 	}
+	
+	public void setThisId(String thisId){
+		this.thisId = thisId;
+	}
 	public String getThisId(){
 		return thisId;
+	}
+	
+	public void setThatId(String thatId){
+		this.thatId = thatId;
 	}
 	public String getThatId(){
 		return thatId;
 	}
+	
+
+	public void setThisType(int t){
+		thisType = t;
+	}
 	public int getThisType(){
 		return thisType;
+	}
+	
+	public void setThatType(int t){
+		thatType = t;
 	}
 	public int getThatType(){
 		return thatType;
 	}
+	
+	public void setThisIconPath(String i) {
+		thisIconPath = i;
+	}
 	public String getThisIconPath(){
 		return thisIconPath;
+	}
+	
+	public void setThatIconPath(String i) {
+		thatIconPath = i;
 	}
 	public String getThatIconPath(){
 		return thatIconPath;
 	}
-	public String getCreateTime(){
-		return createTime;
+	
+	
+
+	public void setTaskStatus(int i) {
+		taskStatus = i;
 	}
 	public int getTaskStatus(){
 		return taskStatus;
 	}
+	
+	public void setCreateTime(String t){
+		createTime = t;
+	}
+	public String getCreateTime(){
+		return createTime;
+	}
+	
+	
+	public void setThisInfo(String i) {
+		thisInfo = i;
+	}
 	public String getThisInfo(){
 		return thisInfo;
 	}
-	public void setThisInfo(String i) {
-		thisInfo = i;
+	
+	public void setThatInfo(String i) {
+		thatInfo = i;
 	}
 	public String getThatInfo(){
 		return thatInfo;
 	}
-	public void setThatInfo(String i) {
-		thatInfo = i;
-	}
-	public void setThisIconPath(String i) {
-		thisIconPath = i;
-	}
-	public void setUserId(String uid) {
-		userId = uid;
-	}
-	public void setThatIconPath(String i) {
-		thatIconPath = i;
-	}
-	public void setTaskStatus(int i) {
-		taskStatus = i;
-	}
-	public void setTaskId(String tid){
-		taskId = tid;
-	}
-	public void setTaskName(String t){
-		taskName = t;
-	}
-	public void setThisId(String thisId){
-		this.thisId = thisId;
-	}
-	public void setThatId(String thatId){
-		this.thatId = thatId;
-	}
-	public void setThisType(int t){
-		thisType = t;
-	}
-	public void setThatType(int t){
-		thatType = t;
-	}
+	
+	
 }

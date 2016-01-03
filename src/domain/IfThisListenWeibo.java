@@ -5,19 +5,85 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+import weibo.ForWeibo;
 public class IfThisListenWeibo extends IfThis{
 	private String thisWeiboId;
 	private String thisWeiboContent;
+	private String thisWeiboAccessToken;
+	private long thisWeiboCount;
 	private String thisTimeLen;
-	private String thisWeiboPwd;
-	private String thisInfo;
+	private int thisWeiboType;
+	private String thisWeiboStartTime;
 	
-	public IfThisListenWeibo() {
-		this.setThisType(IfThis.thisListenWeiboTypeValue);
-		this.setThisInfo("Listen Weibo");
+	
+	public static int IfThisListenWeiboTypeOne = 1;
+	public static int IfThisListenWeiboTypeTwo = 2;
+	public IfThisListenWeibo() {//use the next !
+		
 	}
-	
+	public IfThisListenWeibo(String userId){
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    
+	    	Statement statement1 = con.createStatement();
+	    	String query1 = "select * from User where userId = \"" + userId + "\"";
+	    	System.out.println(query1);
+	    	ResultSet res1 = statement1.executeQuery(query1);
+	    	if(res1.next()){
+		    	thisWeiboAccessToken = res1.getString("userWeiboAccessToken");
+		    	thisWeiboId = res1.getString("userWeiboId");
+	    	}
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed!");    
+	    	se.printStackTrace() ;    
+	     }  
+		ForWeibo tmp = new ForWeibo(thisWeiboAccessToken);
+		long newCount = tmp.getCount();
+		thisWeiboCount = newCount;
+	}
+	public IfThisListenWeibo(String userId,String content){
+		thisWeiboContent = content;
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    
+	    	Statement statement1 = con.createStatement();
+	    	String query1 = "select * from User where userId = \"" + userId + "\"";
+	    	System.out.println(query1);
+	    	ResultSet res1 = statement1.executeQuery(query1);
+	    	if(res1.next()){
+		    	thisWeiboAccessToken = res1.getString("userWeiboAccessToken");
+		    	thisWeiboId = res1.getString("userWeiboId");
+	    	}
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed!");    
+	    	se.printStackTrace() ;    
+	     }  
+		ForWeibo tmp = new ForWeibo(thisWeiboAccessToken);
+		long newCount = tmp.getCount();
+		thisWeiboCount = newCount;
+	}
 	public IfThisListenWeibo(String weiboId, String weiboPwd, String content, String t) {
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
@@ -28,7 +94,7 @@ public class IfThisListenWeibo extends IfThis{
 	public IfThisListenWeibo(String thisId, String weiboId, String pwd, String content, String t) {
 		setThisId(thisId);
 		setThisWeiboId(weiboId);
-		setThisWeiboPwd(pwd);
+		setThisWeiboAccessToken(pwd);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
 		this.setThisType(IfThis.thisListenWeiboTypeValue);
@@ -36,8 +102,52 @@ public class IfThisListenWeibo extends IfThis{
 	}
 	
 	public boolean ifHappened() {
-		// todo:
-		return false;
+		// todo:		
+		ForWeibo tmp = new ForWeibo(thisWeiboAccessToken);
+		long newCount = tmp.getCount();
+		System.out.println("thisWeiboType--------------->" + thisWeiboType);
+		if(thisWeiboType == 2){
+			if(newCount > thisWeiboCount){
+				dao.impl.TaskDaoImpl t = new dao.impl.TaskDaoImpl();
+				t.pauseTaskOnThisId(getThisId());
+				return false;
+			}
+			else{
+				System.out.println("send a weibo ? -------> did not send a weibo");
+				boolean tag = false;
+				String actionTime;
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				int minuteAdd = Integer.parseInt(thisTimeLen);
+				try{
+					Date dt=sdf.parse(thisWeiboStartTime);
+					System.out.println(dt);
+					Calendar rightNow = Calendar.getInstance();
+					rightNow.setTime(dt);
+					rightNow.add(Calendar.MINUTE, minuteAdd);
+					Date dt1=rightNow.getTime();
+					actionTime = sdf.format(dt1);
+					System.out.println("action Time-------------" + actionTime);
+					if(actionTime.equals( util.DateStringUtil.date2String(new java.util.Date()) )){
+						tag = true;
+					}
+				}
+				catch(Exception e){
+					
+				}
+				if(tag == true){
+					System.out.println("time to send a mail ?  ------> yes!");
+					dao.impl.TaskDaoImpl t = new dao.impl.TaskDaoImpl();
+					t.pauseTaskOnThisId(getThisId());
+					return true;
+				}
+			}
+		}
+		if(!(newCount > thisWeiboCount)){
+			return false;
+		}
+		dao.impl.ThisDaoImpl t = new dao.impl.ThisDaoImpl();
+		t.setWeiboCount(this, newCount);
+		return tmp.getWeibo(thisWeiboContent);
 	}
 	
 	public boolean add2Db() {
@@ -52,13 +162,12 @@ public class IfThisListenWeibo extends IfThis{
 		return t.removeThis(this);
 	}
 	
-	public String getThisInfo() {
-		return thisInfo;
+	public int getThisWeiboType(){
+		return thisWeiboType;
 	}
-	public void setThisInfo(String ts) {
-		thisInfo = ts;
+	public void setThisWeiboType(int type){
+		thisWeiboType = type;
 	}
-	
 	public String getThisWeiboId() {
 		return thisWeiboId;
 	}
@@ -75,6 +184,12 @@ public class IfThisListenWeibo extends IfThis{
 		thisWeiboContent = c;
 	}
 	
+	public long getThisWeiboCount(){
+		return thisWeiboCount;
+	}
+	public void setThisWeiboCount(long count){
+		thisWeiboCount = count;
+	}
 	public String getThisTimeLen() {
 		return thisTimeLen;
 	}
@@ -82,12 +197,18 @@ public class IfThisListenWeibo extends IfThis{
 	public void setThisTimeLen(String l) {
 		thisTimeLen = l;
 	}
-	
-	public String getThisWeiboPwd() {
-		return thisWeiboPwd;
+	public void setThisWeiboStartTime(String t){
+		thisWeiboStartTime = t;
+	}
+	public String getThisWeiboStartTime(){
+		return thisWeiboStartTime;
 	}
 	
-	public void setThisWeiboPwd(String s) {
-		thisWeiboPwd = s;
+	public String getThisWeiboAccessToken() {
+		return thisWeiboAccessToken;
+	}
+	
+	public void setThisWeiboAccessToken(String s) {
+		thisWeiboAccessToken = s;
 	}
 }
