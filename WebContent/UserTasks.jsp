@@ -131,7 +131,7 @@ function showTasks() {
 			document.getElementById(tasksThen[i]).style.visibility = "hidden";
 		}
 	}
-	document.getElementById("taskNum").innerHTML = (taskNo) + "/" + tasksLen;
+	document.getElementById("taskNum").innerHTML = "Your tasks " + (taskNo) + "/" + tasksLen;
 }
 
 function lastPage() {
@@ -196,23 +196,22 @@ function jump2UserServlet(destServlet) {
 	</style> 
 </head>
 <body>
-    <div id="logo">
+    <div class="header">
         <img src="${pageContext.request.contextPath}/imag/logo.jpg">
-        <span class="head_tips" style="font-size:21px;">Do Some Services for You</span>
-    </div>
+        <span>Do Some Services for You</span>
     <div id="menus">
         <ul>
             <li>
-                <a href=#>Account</a>
+    s            <a href=#>Account</a>
                 <ul>
                     <li>
-                        <a href="a2.jsp">View</a>
+                        <a href="" onclick="jump2UserServlet('UserInfoUIServlet'); return false">View</a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Edit</a>
+                        <a href="" onclick="jump2EditUserInfoUIServlet">Edit</a>
                     </li>
                     <li>
-                        <a href="" onclick = "jump2UserServlet('SignOutServlet'); return false;">
+                        <a href="" onclick = "jump2UserServlet('SignOutServlet'); return false">
                         	Sign out
                         </a>
                     </li>
@@ -220,114 +219,122 @@ function jump2UserServlet(destServlet) {
             </li>
         </ul>
     </div>
-    <div class="title_pics">
-        <img src="${pageContext.request.contextPath}/imag/line.jpg">
-        <div id="title_tips">
-            &nbsp;&nbsp;&nbsp;&nbsp;Your Tasks&nbsp;&nbsp;<label id="taskNum">3/3 enabled</label>
-        </div>
-    </div>
-    <div id="TaskContatiner">
+    <img src="${pageContext.request.contextPath}/imag/line.jpg" />
+    </div> 
+    <div class="Wrapper"> 
+    	<div class="title_tips" id="taskNum">
+	  Your Tasks
+	</div>
+    <div class="TaskContatiner">
         <ul id="taskList">
             <li>
-                    <div id="Taskinfo">
-                        <span id="task1Name">1.</span>
-                        <span>
-                            &nbsp;<font id="task1If">if</font>&nbsp;
-                            <!--<div id="primaryObj" style="position: absolute; left:15%;">-->
-                            <img src="${pageContext.request.contextPath}/imag/clock.png" id="task1ThisImg" style="padding-top:6px;width:80px;height:70px;" />
-                            &nbsp;<font id="task1Then">then</font>
-                            <img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task1ThatImg" style="width:80px;height:70px;" />
-                        </span>
-                        <span id="task1ThisInfo" style="font-size:12px;position:absolute;top:100%;left:16%; text-align:center;width:80px;height:auto;">every day 7:00 pm</span>
-                        <span id="task1ThatInfo" style="font-size:12px;position:absolute;top:100%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
-                        <div id="edit_icons">
-                            <a href="" onclick="jump2TaskServlet(1,'EditTaskUIServlet'); return false">
-                            	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" width="60" height="50" />
-                            </a>
-                            <a href="" onclick="jump2TaskServlet(1,'RemoveTaskServlet'); return false">
-                            	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" width="60" height="50" />
-                            </a>
-                            <a href="" onclick="jump2TaskServlet(1,'StartTaskServlet'); return false">
-                            	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" width="60" height="50" />
-                            </a>
-                            <a href="" onclick="jump2TaskServlet(1,'PauseTaskServlet'); return false">
-                            	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" width="60" height="50" />
-                            </a>
-                        </div>
-                        <span id="taskTimetip">
-                        	<font id="task1CreateTime">created about 1 hours ago</font>
-                        </span>
+                <div id="Taskinfo" class="taskInner">
+                    <div id="task1Name" class="infoLable">1.</div>
+                    <div class="infoLable" id="task1If">if</div>
+                    <div class="wrap" >
+                        <div class="pic"><img src="${pageContext.request.contextPath}/imag/clock.png" id="task1ThisImg"/></div>
+			    		<div class="taskTip" id="task1ThisInfo">every day 7:00 pm</div>
+					</div>
+                    <div class="infoLable" id="task1Then">then</div>
+					<div class="wrap">
+		    	    	<div class="pic"><img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task1ThatImg"/></div>
+			    		<div class="taskTip" id="task1ThatInfo">MyDarlinghh send a weibo</div>
+			    	</div>
+                 	<div class="edit_icons">
+                    	<a href="" onclick="jump2TaskServlet(1,'EditTaskUIServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" width="60" height="50" />
+                    	</a>
+                   	 	<a href="" onclick="jump2TaskServlet(1,'RemoveTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" width="60" height="50" />
+                    	</a>
+                    	<a href="" onclick="jump2TaskServlet(1,'StartTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" width="60" height="50" />
+                    	</a>
+                    	<a href="" onclick="jump2TaskServlet(1,'PauseTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" width="60" height="50" />
+                    	</a>
+		            	<div class="taskTip" id="task1CreateTime">created about 1 hours ago</div>
                     </div>
+                </div>
             </li>
             <li>
-                <div id="Taskinfo_1">
-                    <span id="task2Name">2.</span>
-                    <span>
-                        &nbsp;<font id="task2If">if</font>&nbsp;
-                        <img src="${pageContext.request.contextPath}/imag/mail.png" id="task2ThisImg" style="padding-top:6px;width:80px;height:70px;" />
-                        &nbsp;<font id="task2Then">then</font>
-                        <img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task2ThatImg" style="width:80px;height:70px;" />
-                    </span>
-                    <span id="task2ThisInfo" style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">nj_txh@163.com recieved a mail</span>
-                    <span id="task2ThatInfo" style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">MyDarlinghh send a weibo </span>
-                    <div id="edit_icons">
-                        <a href="" onclick="jump2TaskServlet(2,'EditTaskUIServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" width="60" height="50" />
-                        </a>
-                        <a href="" onclick="jump2TaskServlet(2,'RemoveTaskServlet'); return false">
+                <div id="Taskinfo1" class="taskInner">
+                    <div id="task2Name" class="infoLable">2.</div>
+                    <div class="infoLable" id="task2If">if</div>
+                    <div class="wrap" >
+                        <div class="pic"><img src="${pageContext.request.contextPath}/imag/clock.png" id="task2ThisImg"/></div>
+			    		<div class="taskTip" id="task2ThisInfo">every day 7:00 pm</div>
+					</div>
+                    <div class="infoLable" id="task2Then">then</div>
+					<div class="wrap">
+		    	    	<div class="pic"><img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task2ThatImg"/></div>
+			    		<div class="taskTip" id="task2ThatInfo">MyDarlinghh send a weibo</div>
+			    	</div>
+                 	<div class="edit_icons">
+                    	<a href="" onclick="jump2TaskServlet(2,'EditTaskUIServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" width="60" height="50" />
+                    	</a>
+                   	 	<a href="" onclick="jump2TaskServlet(2,'RemoveTaskServlet'); return false">
                         	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task2Delete" width="60" height="50" />
-                        </a> 
+                    	</a>
                     	<a href="" onclick="jump2TaskServlet(2,'StartTaskServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(2,'PauseTaskServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" width="60" height="50" />
                     	</a>
+		            	<div class="taskTip" id="task2CreateTime">created about 1 hours ago</div>
                     </div>
-                    <span id="taskTimetip">
-                    	<font id="task2CreateTime">created about 2 hours ago</font>
-                    </span>
                 </div>
             </li>
             <li>
-                <div id="Taskinfo_2">
-                    <span id="task3Name">3.</span>
-                    <span>
-                        &nbsp;<font id="task3If">if</font>&nbsp;
-                        <img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task3ThisImg" style="padding-top:6px;width:80px;height:70px;" />
-                        &nbsp;<font id="task3Then">then</font>
-                        <img src="${pageContext.request.contextPath}/imag/mail.png" id="task3ThatImg" style="width:80px;height:70px;" />
-                    </span>
-                    <span id="task3ThisInfo" style="font-size:12px;position:absolute;top:95%;left:16%; text-align:center;width:80px;">MyDarlinghh send a weibo:"hello world"</span>
-                    <span id="task3ThatInfo" style="font-size:12px;position:absolute;top:95%;left:45%;text-align:center;width:80px;">send a mail to nj_txh@163.com </span>
-                    <div id="edit_icons">
-                        <a href="" onclick="jump2TaskServlet(3,'EditTaskUIServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task3Edit" width="60" height="50" />
-                        </a>
-                        <a href="" onclick="jump2TaskServlet(3,'RemoveTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" width="60" height="50" />
-                        </a>
-                      	<a href="" onclick="jump2TaskServlet(3,'StartTaskServlet'); return false">
-                      		<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" width="60" height="50" />
-                      	</a>
-                    	<a href="" onclick="jump2TaskServlet(3,'PauseTaskServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" width="60" height="50" />
+                <div id="Taskinfo2" class="taskInner">
+                    <div id="task3Name" class="infoLable">3.</div>
+                    <div class="infoLable" id="task3If">if</div>
+                    <div class="wrap" >
+                        <div class="pic"><img src="${pageContext.request.contextPath}/imag/clock.png" id="task3ThisImg"/></div>
+			    		<div class="taskTip" id="task3ThisInfo">every day 7:00 pm</div>
+					</div>
+                    <div class="infoLable" id="task3Then">then</div>
+					<div class="wrap">
+		    	    	<div class="pic"><img src="${pageContext.request.contextPath}/imag/weibo.jpg" id="task3ThatImg"/></div>
+			    		<div class="taskTip" id="task3ThatInfo">MyDarlinghh send a weibo</div>
+			    	</div>
+                 	<div class="edit_icons">
+                    	<a href="" onclick="jump2TaskServlet(3,'EditTaskUIServlet'); return false">
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task3Edit" width="60" height="50" />
                     	</a>
+                   	 	<a href="" onclick="jump2TaskServlet(3,'RemoveTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" width="60" height="50" />
+                    	</a>
+                    	<a href="" onclick="jump2TaskServlet(3,'StartTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" width="60" height="50" />
+                    	</a>
+                    	<a href="" onclick="jump2TaskServlet(3,'PauseTaskServlet'); return false">
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" width="60" height="50" />
+                    	</a>
+		            	<div class="taskTip" id="task3CreateTime">created about 1 hours ago</div>
                     </div>
-                      <span id="taskTimetip">
-                      	<font id="task3CreateTime">created about 3 hours ago</font>
-                      </span>
-                </div>
+                 </div>
             </li>
         </ul>
         <script>showTasks();</script>
-    </div>
-    <span id="page_tip">
+    <div id="page_tip">
         <button id="pre_page" onclick="lastPage()">上一页</button>
         <button id="next_page" onclick="nextPage()">下一页</button>
-    </span>
-    <div style="position:absolute;top:13%;right:4%;">
+    </div>
+    <div style="float:right;margin-top:10px;margin-right:10px;">
         <a href="#"><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
     </div>
+    </div>
+     <div class="foot">2015©MBQ</div>
+     <script>
+        document.getElementById("time_weibo_edit").addEventListener("click", function () { $("#Edit_time_weibo").show(); });
+        document.getElementById("cancelBtn_edit_time_weibo").addEventListener("click", function () { $("#Edit_time_weibo").hide(); });
+        document.getElementById("mail_weibo_edit").addEventListener("click", function () { $("#Edit_mail_weibo").show(); });
+        document.getElementById("cancelBtn_edit_mail_weibo").addEventListener("click", function () { $("#Edit_mail_weibo").hide(); });
+        document.getElementById("weibo_mail_edit").addEventListener("click", function () { $("#Edit_weibo_mail").show(); });
+        document.getElementById("cancelBtn_edit_weibo_mail").addEventListener("click", function () { $("#Edit_weibo_mail").hide(); });
+    </script>
 </body>
 </html>

@@ -17,84 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="ifttt page">
 	<link rel="stylesheet" type="text/css" href="mainNew.css"/>
-	<style>
-	div#logo{
-         position:absolute;
-         left:6%;
-         top:2%;
-     }
-     div#menus {position:absolute;
-                left:66%;
-                top:2%;
-                }
-        #menus ul {
-            list-style: none;
-        }
-        #menus ul li {
-                float: left;
-            }
-            #menus ul li a:link, #menus ul li a:visited {
-                display: block;
-                width: 120px;
-                height:25px;
-                font-weight: bold;
-                color: black;
-                background-color: white;
-                text-align: center;
-                padding: 4px;
-                line-height:25px;
-                font-size:18px;
-                text-decoration: none;
-                text-transform: none;
-            }
-
-            #menus ul li a:hover, #menus ul li a:active {
-                background-color: white;
-            }
-            #menus ul li:hover ul {
-                display: block;
-                position: absolute;
-                width: 100px;
-                /*left:0;*/
-                z-index: 10000;
-                             
-            }
-          #menus ul li ul {
-                display: none;
-            }
-            #menus ul li:hover ul li a {
-                display: block;
-                background-color: white;
-                color: black;
-                width: 100px;
-                text-align: center;
-                border-bottom: 1px solid #f2f2f2;
-                border-right: none;
-                border: #666 solid 1px;
-            }
-                #menus ul li:hover ul li a:hover {
-                    background: #6dc7ec;
-                    color: black;
-                }
-            
-            #menus ul li ul li {
-                float: none;
-                width: 100%;
-                line-height: 12px;
-                display: block;
-            }
-        
-        #menus ul li ul li a {
-                font-size: 12px;
-                width: 100%;
-                padding: 3px 0;
-                text-align: center;
-                line-height: 18px;
-            }
-        .head_tips{
-            font-size:21px;
-        }
-        </style>
 <script>
 function jump2Servlet(destServlet) {
 	var ftemp = document.createElement("form");
@@ -116,16 +38,9 @@ function jump2Servlet(destServlet) {
 </script>
 </head>
 <body>
-	<div class ="logo" >
+	<div class ="header" >
     <img src="${pageContext.request.contextPath}/imag/logo.jpg">
-    <span class="head_tips">| Information setting</span>
-	</div>
-	<div class ="line">
-        <img src="${pageContext.request.contextPath}/imag/line.jpg" />
-    </div>
-    <div class = "title_info">
-    	<span>Preference >> Setting</span>
-    </div>
+    <span class="header_info">Do Some Services for You</span>
     <div id="menus">
             <ul>
                 <li>
@@ -154,50 +69,50 @@ function jump2Servlet(destServlet) {
                 </li>
             </ul>
     </div>
-	<div class = "info-inner">
+    <img src="imag/line.jpg" />
+</div>
+	<div class= "Wrapper">
+		   <div class="editUserinfo" style = "margin-left:100px; margin-top:80px;font-size:125%;">
 		<form accept-charset = "UTF-8" action = "${pageContext.request.contextPath}/EditUserInfoServlet" 
 			class = "edit_userinfo" id = "edit_user_info" method = "get">
 				<p>
 					<label>Name</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type = "text" id = "userName" value = "${formbean.userName}">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type = "text" id = "userName" value = "${formbean.userName}" style = " width:180px ;height:28px;">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
 					<label>Mail</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          			<input type = "text" id = "userMail" value = "${formbean.userMail}" width = "59" height = "40">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			<input type = "text" id = "userMail" value = "${formbean.userMail}" style = " width:180px ;height:28px;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Mail password</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" name="userMailPwd" id = "userMailPwd" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
 					<label>Weibo</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" name="userWeiboId" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
+            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<label>Weibo password</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" name="userWeiboPwd" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
-					<label>Weibo password</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
-            		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
-            	</p>
-            	<p>
-					<label>Level</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
-            		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
-            	</p>
-            	<p>
+
 					<label>Money</label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" width = "59" height = "40">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
-				<p style="text-align:left">
+				<p style"position:fixed; left: 200px; bottom: 50px ;" >
 					<input type="image" src="${pageContext.request.contextPath}/imag/commit.png" alt="Submit" />
 				</p>	
 		</form>
 	</div>
 </body>
-	<div class="copyright">2015©MBQ</div>
+	<div class="foot">2015©MBQ</div>
 </html>

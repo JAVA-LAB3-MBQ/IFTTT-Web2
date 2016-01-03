@@ -36,7 +36,7 @@ public class SignOutServlet extends HttpServlet {
 		//uservice.signOut(userId);
 		
 		// jump 
-		request.getRequestDispatcher("/guide.jsp").forward(request, response);
+		request.getRequestDispatcher("/Main.jsp").forward(request, response);
 	}
 
 	/**

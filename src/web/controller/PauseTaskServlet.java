@@ -51,7 +51,7 @@ public class PauseTaskServlet extends HttpServlet {
 	    request.setAttribute("formbean", formbean);
 	    
 	    // jump to UserTasks.jsp
-	    request.getRequestDispatcher("/WEB-INF/UserTask.jsp").forward(request, response);;
+	    request.getRequestDispatcher("/WEB-INF/UserTasks.jsp").forward(request, response);;
 	}*/
 
 	/**

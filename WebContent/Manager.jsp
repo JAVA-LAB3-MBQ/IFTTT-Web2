@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<div class="header" >
-    <img src="imag/logo.jpg">
+    <img src="${pageContext.request.contextPath}/imag/logo.jpg">
     <span>Do Some Services for You</span>
     <div id="menusManage">
             <ul>
@@ -31,12 +31,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </li>
             </ul>
     </div>
-    <img src="imag/line.jpg" />
+    <img src="${pageContext.request.contextPath}/imag/line.jpg" />
 </div>
 <div class="Wrapper">
 <div id="userInfo" class="InfoInner">
 <span style="font-size:18px;">Table of Accounts Info:
-<img id="userCloseBtn" class="closeIcon" src="imag/close.png"></span><br>
+<img id="userCloseBtn" class="closeIcon" src="${pageContext.request.contextPath}/imag/close.png"></span><br>
 <table id="userInfoTable">
 <tr>
 <th>ID</th>

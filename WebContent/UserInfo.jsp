@@ -17,6 +17,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="ifttt page">
 	<link rel="stylesheet" type="text/css" href="mainNew.css"/>
+<script>
+function jump2Servlet(destServlet) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    alert(ftemp.action);
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = '${formbean.userId}';
+    ftemp.appendChild(uidParam);
+    
+    document.body.appendChild(ftemp);
+    alert("submit");
+    ftemp.submit(); // jump
+}
+</script>
 </head>
 <body>
 	<div class="header" >
@@ -24,32 +43,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <span>Do Some Services for You</span>
     <div id="menus">
             <ul>
-                <li><a href="a.jsp">Task</a>
-                <ul>
-                    <li>
-                        <a href="a1.jsp">View Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Create Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Edit Task</a>
-                    </li>
-                    <li>
-                        <a href="a1.jsp">Delete Task</a>
-                    </li>
-                </ul>
+                <li>
+                	<a href="" onclick="jump2Servlet('UserTasksUIServlet'); return false">
+                	Task
+                	</a>
                 </li>
-                <li><a href="b.jsp">Account</a>
+                <li><a href=#>Account</a>
                 <ul>
                     <li>
-                        <a href="a2.jsp">View</a>
+                        <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">
+                        View
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Edit</a>
+                        <a href="" onclick="jump2Servlet('EditUserInfoUIServlet'); return false">
+                        Edit
+                        </a>
                     </li>
                     <li>
-                        <a href="a2.jsp">Sign out</a>
+                        <a href="" onclick="jump2Servlet('SignOutServlet'); return false">
+                        Sign out
+                        </a>
                     </li>
                 </ul>
                 </li>
