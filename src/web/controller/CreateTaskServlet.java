@@ -11,7 +11,6 @@ import web.formbean.*;
 import service.impl.*;
 import domain.*;
 import util.*;
-import util.*;
 /**
  * Servlet implementation class CreateTaskServlet
  */
@@ -28,16 +27,16 @@ public class CreateTaskServlet extends HttpServlet {
     }
 
     // test 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("enter CreateTaskServlet, line 32");
     	ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
 		String userId = form.getUserId();
 		form.printAll();
-    }
+    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
 		String userId = form.getUserId();
 		
@@ -99,7 +98,7 @@ public class CreateTaskServlet extends HttpServlet {
 		
 	  // jump to UserTasks.jsp
 	  request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
-	}*/
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -4,6 +4,17 @@ public class UserInfoFormBean {
 	String userId, userName, userMail, userMailPwd, userWeiboId, userWeiboPwd;
     String userScore, userLevel, userMoney;
     
+    public void printAll() {
+    	System.out.println("userId: " + getUserId());
+    	System.out.println("userName: " + getUserName());
+    	System.out.println("userMail: " + getUserMail());
+    	System.out.println("userMailPwd: " + getUserMailPwd());
+    	System.out.println("userWeiboId: " + getUserWeiboId());
+    	System.out.println("userWeiboPwd: " + getUserWeiboPwd());
+    	System.out.println("userScore: " + getUserScore());
+    	System.out.println("userLevel: " + getUserLevel());
+    	System.out.println("userMoney: " + getUserMoney());
+    }
     public String getUserId() {
     	return userId;
     }
@@ -48,7 +59,7 @@ public class UserInfoFormBean {
     	return userWeiboPwd;
     }
     
-    public void setUserWriboPwd(String w) {
+    public void setUserWeiboPwd(String w) {
     	userWeiboPwd = w;
     }
     

@@ -169,7 +169,7 @@ public class UserServiceImpl implements IUserService {
 		// change user's information, constructing a new user
 		user.setUserEmailAddr(mail);
 		user.setUserEmailPwd(mailPwd);
-		user.setUserWeiboPwd(weiboId);
+		user.setUserWeiboId(weiboId);
 		user.setUserWeiboPwd(weiboPwd);
 		user.setUserWeiboAccessToken(new_access_token);
 		

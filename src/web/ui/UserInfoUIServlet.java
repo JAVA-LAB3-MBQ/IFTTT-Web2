@@ -30,13 +30,14 @@ public class UserInfoUIServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in UserInfoUIServlet");
 		// get userId
 		String userId = request.getParameter("userId");
-				
+		System.out.println("userId: " + userId);
 		// get the user
 		UserServiceImpl service = new UserServiceImpl();
 		User user = service.getUserInfo(userId);
-				
+		
 		// construct formbean
 		UserInfoFormBean formbean = new UserInfoFormBean();
 		formbean.setUserLevel(String.format("%d",user.getUserLevel()));
@@ -47,9 +48,12 @@ public class UserInfoUIServlet extends HttpServlet {
 		formbean.setUserMoney(String.format("%d", user.getUserMoney()));
 		formbean.setUserScore(String.format("%d", user.getUserScore()));
 		formbean.setUserWeiboId(user.getUserWeiboId());
-		formbean.setUserWriboPwd(user.getUserWeiboPwd());
+		formbean.setUserWeiboPwd(user.getUserWeiboPwd());
 		request.setAttribute("formbean", formbean);
 				
+		// test
+		formbean.printAll();
+		
 		// jump to UserTasks.jsp
 		request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
 	}

@@ -1,5 +1,4 @@
 package domain;
-import java.util.ArrayList;
 public class Message {
 	String messageId;
 	String fromUserId;
@@ -20,10 +19,10 @@ public class Message {
 	public String getMessageId(){
 		return messageId;
 	}
-	public String getMessageFromUserId(){
+	public String getFromUserId(){
 		return fromUserId;
 	}
-	public String getMessageToUserId(){
+	public String getToUserId(){
 		return toUserId;
 	}
 	

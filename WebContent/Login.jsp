@@ -23,19 +23,16 @@
 		<div class="Wrapper">
 		<div class = "infoInputSignIn">
 			<form action = "${pageContext.request.contextPath}/LoginServlet" method = "post">	
-			<label>Username：</label>
-					<input type = "text" id = "id" >
-					<label>Password：</label>
-					&nbsp;<input type = "password" id = "pwd" >
-					<span >
-						<input type = "button"  class = "button" id = "reset" value = "Reset" style="margin-left:50px;"
-						onclick = "window.location.href = 'Login.jsp'">
-						<a href="${pageContext.request.contextPath}/servlet/LoginUIServlet">
-						<button type = "submit" class = "button" id = "register" style="margin-left:70px;">Sign in</button>
-						</a>
-					</span>	
-		</form>
+			<label>Username：</label><input type = "text" name="username" id = "id" >
+			<label>Password：</label>&nbsp;<input type = "password" name="password" id = "pwd" >
+			<span >
+				<input type = "button"  class = "button" id = "reset" value = "Reset" style="margin-left:50px;"
+				onclick = "window.location.href = 'Login.jsp'">
+				<button type = "submit" class = "button" id = "signInBtn" style="margin-left:70px;">Sign in</button>
+			</span>	
+			</form>
 		</div>	
+		</div>
 		<div class="foot">2015©MBQ</div>
 	</body>
 </html>

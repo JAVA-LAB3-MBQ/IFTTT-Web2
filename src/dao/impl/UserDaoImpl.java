@@ -55,7 +55,6 @@ public class UserDaoImpl implements IUserDao{
 					DriverManager.getConnection(domain.DatabaseInfo.url, domain.DatabaseInfo.username,domain.DatabaseInfo.password);
 			Statement statement = con.createStatement();
 			String query = "select * from User where userId = \"" + userId + "\";";
-			System.out.println(query);
 			ResultSet res = statement.executeQuery(query);
 			if(res.next()){
 				domain.User user = new domain.User(res.getString("userId"),res.getString("userName"),res.getString("userPwd"),res.getString("registerTime"),

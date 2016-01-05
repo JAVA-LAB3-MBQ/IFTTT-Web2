@@ -34,18 +34,32 @@ public class EditUserInfoServlet extends HttpServlet {
 		// get form
 		UserInfoFormBean form = WebUtils.request2Bean(request, UserInfoFormBean.class);
 		
+		// test
+		System.out.println("in EditUserInfoServlet get form");
+		form.printAll();
+		
 		// change user's information
 		UserServiceImpl service = new UserServiceImpl();
 		User user = service.editUserInfo(form.getUserId(), form.getUserMail(), form.getUserMailPwd(), 
 							form.getUserWeiboId(), form.getUserWeiboPwd());
 		
 		// construct formbean
-		UserMainFormBean formbean = new UserMainFormBean();
+		UserInfoFormBean formbean = new UserInfoFormBean();
 		formbean.setUserId(user.getUserId());
-		formbean.setUserLevel(String.format("%d", user.getUserLevel()));
+		formbean.setUserMail(user.getUserEmailAddr());
+		formbean.setUserMailPwd(user.getUserEmailPwd());
 		formbean.setUserName(user.getName());
+		formbean.setUserMoney(String.format("%d", user.getUserMoney()));
+		formbean.setUserScore(String.format("%d", user.getUserScore()));
+		formbean.setUserWeiboId(user.getUserWeiboId());
+		formbean.setUserWeiboPwd(user.getUserWeiboPwd());
+		formbean.setUserLevel(String.format("%d", user.getUserLevel()));
 		request.setAttribute("formbean", formbean);
 						
+		// test
+		System.out.println("in EditUserInfoServlet gen formbean");
+		formbean.printAll();
+		
 		// jump to UserMain.jsp
 		request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
 	}

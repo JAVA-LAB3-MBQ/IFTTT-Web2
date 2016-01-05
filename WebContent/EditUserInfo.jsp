@@ -21,7 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function jump2Servlet(destServlet) {
 	var ftemp = document.createElement("form");
     ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
-    alert(ftemp.action);
     ftemp.method = "post";        
     ftemp.style.display = "none";        
     
@@ -32,7 +31,6 @@ function jump2Servlet(destServlet) {
     ftemp.appendChild(uidParam);
     
     document.body.appendChild(ftemp);
-    alert("submit");
     ftemp.submit(); // jump
 }
 </script>
@@ -78,40 +76,42 @@ function jump2Servlet(destServlet) {
 				<p>
 					<label>Name</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type = "text" id = "userName" value = "${formbean.userName}" style = " width:180px ;height:28px;">
+					<input type = "text" id = "userName" name="userName" value = "${formbean.userName}" style = " width:180px ;height:28px;">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
 					<label>Mail</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          			<input type = "text" id = "userMail" value = "${formbean.userMail}" style = " width:180px ;height:28px;">
+          			<input type = "text" id = "userMail" name="userMail" value = "${formbean.userMail}" style = " width:180px ;height:28px;">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<label>Mail password</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userMailPwd" id = "userMailPwd" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
+            		<input type = "password" name="userMailPwd" id = "userMailPwd" value = "${formbean.userMailPwd}" style = " width:180px ;height:28px;">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
 					<label>Weibo</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userWeiboId" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
+            		<input type = "text" name="userWeiboId" value = "${formbean.userWeiboId}" style = " width:180px ;height:28px;">
             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<label>Weibo password</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userWeiboPwd" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
+            		<input type = "password" name="userWeiboPwd" value = "${formbean.userWeiboPwd}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
 
 					<label>Money</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}" style = " width:180px ;height:28px;">
+            		<input type = "text" name="userMoney" id = "userMoney" value = "${formbean.userMoney}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
-				<p style"position:fixed; left: 200px; bottom: 50px ;" >
+            		<input type="hidden" name="userId" value="${formbean.userId}" />
+				<p style="position:fixed; left: 200px; bottom: 50px ;" >
 					<input type="image" src="${pageContext.request.contextPath}/imag/commit.png" alt="Submit" />
 				</p>	
 		</form>
+	</div>
 	</div>
 </body>
 	<div class="foot">2015©MBQ</div>

@@ -1,7 +1,5 @@
 package web.formbean;
 
-import domain.IfThis;
-import domain.Task;
 import util.WebUtils;
 public class ATaskFormBean {
 	private String userId, taskName;

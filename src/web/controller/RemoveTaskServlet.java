@@ -30,18 +30,18 @@ public class RemoveTaskServlet extends HttpServlet {
     }
 
     // test
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// get userId, selectedTask
     	String userId = request.getParameter("userId");
     	String taskId = request.getParameter("taskId");
     	System.out.println("removeTaskS " + userId + " " + taskId);
-    }
+    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get userId and taskId
-		String userId = request.getParameter("useId");
+		String userId = request.getParameter("userId");
 		String taskId = request.getParameter("taskId");
 				
 		// pause it
@@ -57,7 +57,7 @@ public class RemoveTaskServlet extends HttpServlet {
 			    
 		// jump to UserTasks.jsp
 		request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);;
-	}*/
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

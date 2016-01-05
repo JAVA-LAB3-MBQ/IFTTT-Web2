@@ -55,7 +55,8 @@ if(userTasks != null){
 
 function showTasks() {
 	tasksLen = '${formbean.userTasks.size()}';
-	if(taskNo >= tasksLen || taskNo < 0) return;
+	//alert(tasksLen);
+	if((tasksLen > 0 && taskNo >= tasksLen) || taskNo < 0) return;
 	
 	var i;
 	tasksInCurPage = 0;
@@ -157,6 +158,7 @@ function jump2TaskServlet(i, destServlet) {
     uidParam.name = "userId";
     uidParam.value = '${formbean.userId}';
     ftemp.appendChild(uidParam);
+
     // taskId
     var tidParam = document.createElement("textarea");        
     tidParam.name = "taskId";
@@ -208,7 +210,7 @@ function jump2UserServlet(destServlet) {
                         <a href="" onclick="jump2UserServlet('UserInfoUIServlet'); return false">View</a>
                     </li>
                     <li>
-                        <a href="" onclick="jump2EditUserInfoUIServlet">Edit</a>
+                        <a href="" onclick="jump2UserServlet('EditUserInfoUIServlet'); return false">Edit</a>
                     </li>
                     <li>
                         <a href="" onclick = "jump2UserServlet('SignOutServlet'); return false">
@@ -242,16 +244,16 @@ function jump2UserServlet(destServlet) {
 			    	</div>
                  	<div class="edit_icons">
                     	<a href="" onclick="jump2TaskServlet(1,'EditTaskUIServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" width="60" height="50" />
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task1Edit" title="edit" width="60" height="50" />
                     	</a>
                    	 	<a href="" onclick="jump2TaskServlet(1,'RemoveTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task1Delete" title="delete" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(1,'StartTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task1Start" title="start" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(1,'PauseTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task1Stop" title="pause" width="60" height="50" />
                     	</a>
 		            	<div class="taskTip" id="task1CreateTime">created about 1 hours ago</div>
                     </div>
@@ -272,16 +274,16 @@ function jump2UserServlet(destServlet) {
 			    	</div>
                  	<div class="edit_icons">
                     	<a href="" onclick="jump2TaskServlet(2,'EditTaskUIServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" width="60" height="50" />
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task2Edit" title="edit" width="60" height="50" />
                     	</a>
                    	 	<a href="" onclick="jump2TaskServlet(2,'RemoveTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task2Delete" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task2Delete" title="delete" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(2,'StartTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task2Start" title="start" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(2,'PauseTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task2Stop" title="pause" width="60" height="50" />
                     	</a>
 		            	<div class="taskTip" id="task2CreateTime">created about 1 hours ago</div>
                     </div>
@@ -302,29 +304,30 @@ function jump2UserServlet(destServlet) {
 			    	</div>
                  	<div class="edit_icons">
                     	<a href="" onclick="jump2TaskServlet(3,'EditTaskUIServlet'); return false">
-                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task3Edit" width="60" height="50" />
+                    		<img src="${pageContext.request.contextPath}/imag/edit_task_icon.png" id="task3Edit" title="edit" width="60" height="50" />
                     	</a>
                    	 	<a href="" onclick="jump2TaskServlet(3,'RemoveTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/delete_icon.png" id="task3Delete" title="delete" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(3,'StartTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/start_task_icon.png" id="task3Start" title="start" width="60" height="50" />
                     	</a>
                     	<a href="" onclick="jump2TaskServlet(3,'PauseTaskServlet'); return false">
-                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" width="60" height="50" />
+                        	<img src="${pageContext.request.contextPath}/imag/stop_task_icon.png" id="task3Stop" title="pause" width="60" height="50" />
                     	</a>
 		            	<div class="taskTip" id="task3CreateTime">created about 1 hours ago</div>
                     </div>
                  </div>
             </li>
         </ul>
+        </div>
         <script>showTasks();</script>
     <div id="page_tip">
         <button id="pre_page" onclick="lastPage()">上一页</button>
         <button id="next_page" onclick="nextPage()">下一页</button>
     </div>
     <div style="float:right;margin-top:100px;margin-right:50px;">
-        <a href="#"><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
+        <a href="" onclick="jump2UserServlet('CreateTaskUIServlet'); return false"><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
     </div>
     </div>
      <div class="foot">2015©MBQ</div>

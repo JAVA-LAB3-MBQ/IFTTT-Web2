@@ -26,18 +26,21 @@ public class LoginServlet extends HttpServlet {
     }
 
     // test
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/UserMain.jsp").forward(request, response);
-    }
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    	request.getRequestDispatcher("/UserMain.jsp").forward(request, response);
+//    }
+    
     /**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("in LoginServlet");				
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in LoginServlet doget");
 		String username = request.getParameter("username");
 				
 		String password = request.getParameter("password");
-				
+		
+		System.out.println("in LoginServlet, username and password: " + username + password);
+		
 		UserServiceImpl service = new UserServiceImpl();
 				
 		User user = service.loginUser(username, password);
@@ -58,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 		else { // failed
 			// todo: 	
 		}
-	}*/
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

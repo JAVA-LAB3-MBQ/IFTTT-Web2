@@ -29,21 +29,22 @@ public class StartTaskServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // test
+    /*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// get userId, selectedTask
     	String userId = request.getParameter("userId");
     	String taskId = request.getParameter("taskId");
     	System.out.println("startTaskS " + userId + " " + taskId);
-    }
+    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	/*protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get userId and taskId
-		String userId = request.getParameter("useId");
+		String userId = request.getParameter("userId");
 		String taskId = request.getParameter("taskId");
-				
-		// pause it
+		
+		// start it
 		TaskServiceImpl tservice = new TaskServiceImpl();
 	    tservice.startTask(taskId);
 			    
@@ -53,10 +54,10 @@ public class StartTaskServlet extends HttpServlet {
 	    formbean.setUserId(userId);
 	    formbean.setUserTasks(tasks);
 	    request.setAttribute("formbean", formbean);
-			    
+
 	    // jump to UserTasks.jsp
 	    request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);;
-	}*/
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

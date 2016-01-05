@@ -1,7 +1,11 @@
-/weibo/
+/config.properties
 /dao/
 /domain/
+/log4j.properties
 /service/
+/test/
 /thread/
 /util/
 /web/
+/weibo/
+/weibo4j/

@@ -20,7 +20,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function jump2Servlet(destServlet) {
 	var ftemp = document.createElement("form");
     ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
-    alert(ftemp.action);
     ftemp.method = "post";        
     ftemp.style.display = "none";        
     
@@ -31,7 +30,6 @@ function jump2Servlet(destServlet) {
     ftemp.appendChild(uidParam);
     
     document.body.appendChild(ftemp);
-    alert("submit");
     ftemp.submit(); // jump
 }
 </script>
@@ -47,7 +45,7 @@ function jump2Servlet(destServlet) {
                 	Task
                 	</a>
                 </li>
-                <li><a href=#>Account</a>
+                <li><a href="javascript: void(0)">Account</a>
                 <ul>
                     <li>
                         <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">
@@ -60,7 +58,7 @@ function jump2Servlet(destServlet) {
                         </a>
                     </li>
                     <li>
-                        <a href="" onclic="jump2Servlet('SignOutServlet'); return false">
+                        <a href="" onclick="jump2Servlet('SignOutServlet'); return false">
                         Sign out
                         </a>
                     </li>

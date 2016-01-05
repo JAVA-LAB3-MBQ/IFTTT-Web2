@@ -21,7 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function jump2Servlet(destServlet) {
 	var ftemp = document.createElement("form");
     ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
-    alert(ftemp.action);
     ftemp.method = "post";        
     ftemp.style.display = "none";        
     
@@ -32,7 +31,6 @@ function jump2Servlet(destServlet) {
     ftemp.appendChild(uidParam);
     
     document.body.appendChild(ftemp);
-    alert("submit");
     ftemp.submit(); // jump
 }
 </script>
@@ -90,7 +88,7 @@ function jump2Servlet(destServlet) {
 				<p>
 					<label>UserWeibo</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" id = "userWeibo" value = "${formbean.userWeibo}"  style = "border-width:0;">
+            		<input type = "text" id = "userWeibo" value = "${formbean.userWeiboId}"  style = "border-width:0;">
             		<img src = "imag/line.jpg" class = "line">
             	</p>
             	<p>
