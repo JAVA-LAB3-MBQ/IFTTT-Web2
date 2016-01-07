@@ -16,7 +16,6 @@ public class ForWeibo {
 //		System.out.println("lalala"+getCount());
 //	}
 	public boolean getWeibo(String args) {
-//		String access_token = "2.00nQuStD0LGLGIc12d36cf698127OC";
 		Timeline tm = new Timeline(access_token);
 		boolean a=false;
 		try {
@@ -29,7 +28,7 @@ public class ForWeibo {
 			//System.out.println(status.getTotalNumber());
 			String str1=str.substring(index1+5, index2-2);
 			a=str1.contains(args);
-			System.out.println(str1+"e");
+//			System.out.println(str1+"e");
 		} catch (WeiboException e) {
 			e.printStackTrace();
 		}
@@ -44,7 +43,6 @@ public class ForWeibo {
 			count=status.getTotalNumber();
 		} 
 		catch (WeiboException e) {
-//			e.printStackTrace();
 		}
 		return count;
 	}

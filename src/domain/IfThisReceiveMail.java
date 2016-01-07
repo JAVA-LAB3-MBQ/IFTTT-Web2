@@ -42,9 +42,12 @@ public class IfThisReceiveMail extends IfThis{
 	}
 	
 	public IfThisReceiveMail(String userId) {
+		this.setThisType(IfThis.thisReceiveMailTypeValue);
+		
 		// todo: get user's email and emailpwd
 		String email;
 		String emailPwd;
+		
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
 		}

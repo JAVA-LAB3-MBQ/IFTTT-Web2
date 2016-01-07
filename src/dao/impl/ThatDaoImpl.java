@@ -51,6 +51,8 @@ public class ThatDaoImpl implements IThatDao {
 	    	Statement statement = con.createStatement();
 	
 	    	String update = "insert into ThenThatSendMail values(\"" + that_.getThatId() + "\","+ that_.getThatType() + ",\"" + that_.getThatSrcEmailId() + "\",\"" + that_.getThatSrcEmailPwd() + "\",\"" + that_.getThatDestEmailId() + "\",\"" + that_.getThatEmailContent() + "\");" ;
+	    	System.out.println("in ThatDaoImpl lint54 statement="+update);
+	    	System.out.println("in ThatDaoImpl lint55 mailPwd="+that_.getThatSrcEmailPwd());
 	    	statement.executeUpdate(update);
 	    	con.close();
 	     }

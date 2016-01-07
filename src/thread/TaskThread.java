@@ -16,8 +16,9 @@ import domain.ThenThatSendWeibo;
 import java.sql.Connection;
 public class TaskThread extends Thread{
 	public void run(){
-//		while(true){
 			try{
+				System.out.println("in TaskThread run");
+				
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = 
 						DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);	
@@ -26,6 +27,8 @@ public class TaskThread extends Thread{
 					String query = "select * from Task";
 					ResultSet res = statement.executeQuery(query);
 					while(res.next()){
+						System.out.println("thread dealing with a task");
+						
 						String taskId = res.getString("taskId");
 						int taskStatus = res.getInt("taskStatus");
 						int thisType = res.getInt("thisType");
@@ -33,15 +36,22 @@ public class TaskThread extends Thread{
 						String thisId = res.getString("ThisId");
 						String thatId = res.getString("ThatId");
 						String userId = res.getString("userId");
-						System.out.println(taskStatus);
+						
+						System.out.println("thread get a task, id:" + taskId +"status: " + taskStatus + "thisType: " + thisType
+								+ "thatType: " + thatType + "thisId: " + thisId + "thatId: " + thatId + "userId: " + userId);
+						
 						if(taskStatus == domain.Task.startedStatus){
+							System.out.println("thread get a started task");
+							
 							Statement statement1 = con.createStatement();
 							Statement statement2 = con.createStatement();
 							switch(thisType){
 							case IfThis.thisReceiveMailTypeValue:{
 								String queryThisMail = "select * from IfThisReceiveMail where thisId = \"" + thisId + "\"";
 								ResultSet resThis = statement1.executeQuery(queryThisMail);
+								System.out.println("thisReveiveMail----------------");
 								if(!resThis.next())break;
+								System.out.println("resThat has next ");
 								IfThisReceiveMail thisMail = new IfThisReceiveMail(resThis.getString("thisId"),resThis.getString("thisEmailId"),resThis.getString("thisEmailPwd"));		
 								thisMail.setThisEmailCount(resThis.getInt("thisEmailCount"));
 								if(thisMail.ifHappened()){

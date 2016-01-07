@@ -67,7 +67,6 @@ function jump2Servlet(destServlet) {
             </ul>
     </div>
     <img src="${pageContext.request.contextPath}/imag/line.jpg" />
-</div>
 <div class="Wrapper">
     <div id="pre_pic"><img src="imag/icon_prve.jpg"></div>
     <div id="pics">

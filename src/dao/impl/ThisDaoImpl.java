@@ -92,7 +92,8 @@ public class ThisDaoImpl implements IThisDao{
 	    
 	    	Statement statement = con.createStatement();
 	    	
-	    	String statementString = "insert into IfThisTime values(\"" + this_.getThisId() + ",\""  + this_.getThisType() + ",\"" + this_.getGoalTime() + "\");" ;
+	    	String statementString = "insert into IfThisTime values(\"" + this_.getThisId() + "\","  + this_.getThisType() + ",\"" + this_.getGoalTime() + "\");" ;
+	    	System.out.println("in ThisDaoImpl line96 add IfThisTime statement: " + statementString);
 	    	statement.executeUpdate(statementString);
 	    	con.close();
 	     }

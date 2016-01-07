@@ -124,10 +124,10 @@ function submitWholeForm(destServlet) {
                         <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">View</a>
                     </li>
                     <li>
-                        <a href="" onclick="jump2Servlet('EditTaskUIServlet'); return false">Edit</a>
+                        <a href="" onclick="jump2Servlet('EditUserInfoUIServlet'); return false">Edit</a>
                     </li>
                     <li>
-                        <a href="" onclick="sjump2Servlet('SignOutServlet'); return false">Sign out</a>
+                        <a href="" onclick="jump2Servlet('SignOutServlet'); return false">Sign out</a>
                     </li>
                 </ul>
                 </li>

@@ -74,31 +74,31 @@ function showTasks() {
 			// about task's information
 			// thatImg src, and when put mouse on it, it will show the entire thisInfo
 			thisImgEle.style.visibility = "visible";
-			thisImgEle.src = tasksThisIconPath[i];
-			thisImgEle.title = tasksThisInfo[i];
+			thisImgEle.src = tasksThisIconPath[taskNo];
+			thisImgEle.title = tasksThisInfo[taskNo];
 
 			// thatImg src, and when put mouse on it, it will show the entire thatInfo
 			thatImgEle.style.visibility = "visible";
-			thatImgEle.src = tasksThatIconPath[i];
-			thatImgEle.title = tasksThatInfo[i];
+			thatImgEle.src = tasksThatIconPath[taskNo];
+			thatImgEle.title = tasksThatInfo[taskNo];
 
 			// thisInfo, under the this image
 			thisInfoEle.style.visibility = "visible";
 			if(tasksThisInfo[i].length < 20)
-				thisInfoEle.innerHTML = tasksThisInfo[i];
+				thisInfoEle.innerHTML = tasksThisInfo[taskNo];
 			else
-				thisInfoEle.innerHTML = (tasksThisInfo[i]).substr(0, 20) + "...";
+				thisInfoEle.innerHTML = (tasksThisInfo[taskNo]).substr(0, 20) + "...";
 
 			// thatInfo, under the that image
 			thatInfoEle.style.visibility = "visible";
 			if(tasksThatInfo[i].length < 20)
-				thatInfoEle.innerHTML = tasksThatInfo[i];
+				thatInfoEle.innerHTML = tasksThatInfo[taskNo];
 			else
-				thatInfoEle.innerHTML = (tasksThatInfo[i]).substr(0, 20) + "...";
+				thatInfoEle.innerHTML = (tasksThatInfo[taskNo]).substr(0, 20) + "...";
 			
 			// task create time
 			createTimeEle.style.visibility = "visible";
-			createTimeEle.innerHTML = tasksCreateTime[i];
+			createTimeEle.innerHTML = tasksCreateTime[taskNo];
 
 			// task's name, we user "taskNo."
 			nameEle.style.visibility = "visible";

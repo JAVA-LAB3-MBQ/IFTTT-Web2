@@ -46,7 +46,7 @@ function jump2Servlet(destServlet) {
                 	Task
                 	</a>
                 </li>
-                <li><a href=#>Account</a>
+                <li><a href="javascript: void(0)">Account</a>
                 <ul>
                     <li>
                         <a href="" onclick="jump2Servlet('UserInfoUIServlet'); return false">

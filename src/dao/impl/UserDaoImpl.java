@@ -24,6 +24,7 @@ public class UserDaoImpl implements IUserDao{
 	    	Connection con =     
 	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ;    
 	    	Statement statement = con.createStatement();
+	    	System.out.println("in UserDaoImpl line27 userName, userPwd" + userName + userPwd);
 	    	ResultSet res = 
 	    			statement.executeQuery("select * from user where userName = \"" + userName + "\" && userPwd = \"" + userPwd + "\"");
 	    	if(res.next()){

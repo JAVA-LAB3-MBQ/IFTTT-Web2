@@ -45,6 +45,8 @@ public class LoginServlet extends HttpServlet {
 				
 		User user = service.loginUser(username, password);
 		
+		System.out.println("after service.loginUser");
+		
 		if(user != null){ // successed
 			System.out.println("login successfully");
 		    
@@ -52,6 +54,7 @@ public class LoginServlet extends HttpServlet {
 			UserMainFormBean formbean = new UserMainFormBean();
 			formbean.setUserId(user.getUserId());
 			formbean.setUserLevel(String.format("%d", user.getUserLevel()));
+			formbean.setUserScore(String.format("%d", user.getUserScore()));
 			formbean.setUserName(user.getName());
 			request.setAttribute("formbean", formbean);
 				
@@ -60,6 +63,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		else { // failed
 			// todo: 	
+			System.out.println("in LoginServlet, user==null");
 		}
 	}
 

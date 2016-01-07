@@ -24,7 +24,7 @@ public class UserMainFormBean {
 		return userScore;
 	}
 	
-	public void serUserScore(String s) {
+	public void setUserScore(String s) {
 		userScore = s;
 	}
 	
