@@ -1,4 +1,4 @@
-package web.ui;
+package web.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,16 +12,16 @@ import service.impl.UserServiceImpl;
 import web.formbean.UserInfoFormBean;
 
 /**
- * Servlet implementation class UserInfoUIServlet
+ * Servlet implementation class ChargeMoneyServlet
  */
-@WebServlet("/UserInfoUIServlet")
-public class UserInfoUIServlet extends HttpServlet {
+@WebServlet("/ChargeMoneyServlet")
+public class ChargeMoneyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoUIServlet() {
+    public ChargeMoneyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +30,15 @@ public class UserInfoUIServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in UserInfoUIServlet");
-		// get userId
+		// get userId and addMoney
+		int addMoney = Integer.parseInt(request.getParameter("addMoney"));
 		String userId = request.getParameter("userId");
-		System.out.println("userId: " + userId);
-		// get the user
-		UserServiceImpl service = new UserServiceImpl();
-		User user = service.getUserInfo(userId);
+		
+		// change user
+		UserServiceImpl uservice = new UserServiceImpl();
+		User user = uservice.getUserInfo(userId);
+		user.setUserMoney(user.getUserMoney() + addMoney);
+		uservice.changeUser(userId, user);
 		
 		// construct formbean
 		UserInfoFormBean formbean = new UserInfoFormBean();
@@ -51,7 +53,7 @@ public class UserInfoUIServlet extends HttpServlet {
 		formbean.setUserWeiboPwd(user.getUserWeiboPwd());
 		formbean.setUserWeiboAccessToken(user.getUserWeiboAccessToken());
 		request.setAttribute("formbean", formbean);
-		
+				
 		// jump to UserTasks.jsp
 		request.getRequestDispatcher("/UserInfo.jsp").forward(request, response);
 	}

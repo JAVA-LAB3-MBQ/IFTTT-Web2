@@ -210,7 +210,7 @@ function editTaskUI(i) {
 		$("#Edit_time").show();
 	}
 	else if(tasksThisTypeInCurPage[i] == "RECEIVE_MAIL") {
-		$("#Edit_mail").show()
+		$("#Edit_mail").show();
 	}
 	else if(tasksThisTypeInCurPage[i] == "LISTEN_WEIBO") {
 		$("#Edit_weibo").show();

@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="ifttt page">
 	<link rel="stylesheet" type="text/css" href="mainNew.css"/>
+	<script type="text/javascript" src="jquery-2.1.4.js"></script> 
 <script>
 function jump2Servlet(destServlet) {
 	var ftemp = document.createElement("form");
@@ -32,6 +33,10 @@ function jump2Servlet(destServlet) {
     
     document.body.appendChild(ftemp);
     ftemp.submit(); // jump
+}
+
+function showChargeWindow() {
+	 $("#chargeMoney").show();
 }
 </script>
 </head>
@@ -81,7 +86,7 @@ function jump2Servlet(destServlet) {
 				<p>
 					<label>Name</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type = "text" id = "userName" name="userName" value = "${formbean.userName}" style = " width:180px ;height:28px;">
+					<input type = "text" id = "userName" name="userName" value = "${formbean.userName}" disabled="disabled" style = "width:180px ;height:28px;">
 					<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
 				</p>
 				<p>
@@ -101,14 +106,14 @@ function jump2Servlet(destServlet) {
             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<label>Access token</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userWeiboAccessToken" value = "${formbean.userWeiboAccessToken}" style = " width:180px ;height:28px;">
+            		<input type = "text" name="userWeiboPwd" value = "${formbean.userWeiboPwd}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>
 
 					<label>Money</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "text" name="userMoney" id = "userMoney" value = "${formbean.userMoney}" style = " width:180px ;height:28px;">
+            		<input type = "button" id = "chargeMoneyBtn" value = "charge" onclick="showChargeWindow(); return false"/>
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             		<input type="hidden" name="userId" value="${formbean.userId}" />
@@ -117,6 +122,15 @@ function jump2Servlet(destServlet) {
 				</p>	
 		</form>
 	</div>
+	<div id="chargeMoney" class="window_form">
+               <form action="${pageContext.request.contextPath}/ChargeMoneyServlet" method="post" id="editForm">
+                     <span class="editTitle_2">Charge Money:</span><br />
+                      Add Money：&nbsp;&nbsp;<input type="text" name="addMoney" id="" class="ipt" /><br />
+                      <input type = "hidden" name="userId" value="${formbean.userId}" />
+                      <input style="margin-left:62px;" type="submit" id="submitBtn_edit_time" value="Ok">
+                      <input style="margin-left:62px;" type="button" id="cancelBtn_edit_time" value="Cancel">
+               </form>
+    </div>
 	</div>
 </body>
 	<div class="foot">2015©MBQ</div>

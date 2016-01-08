@@ -122,7 +122,6 @@ if(messages != null){
 <%}
 }%>
 function showUserMessages() {
-	alert("showUserMessages");
 	var list = 	"<thead>" +
     		    "<tr>" +
     			"<th class = \"table_th\">Message ID</th>" +
@@ -141,7 +140,6 @@ function showUserMessages() {
      			"</tr>";
 	}
 	list +=  "</tbody>";
-	alert(list);
 	document.getElementById("userMessagesTable").innerHTML = list;
 }
 </script>

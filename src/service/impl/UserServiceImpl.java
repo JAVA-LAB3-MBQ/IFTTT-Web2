@@ -24,72 +24,12 @@ import domain.ThenThatSendMail;
 import domain.ThenThatSendWeibo;
 import thread.TaskThread;
 public class UserServiceImpl implements IUserService {
-    public static void main(String args[]){   
-    	//添加user
-//    	User user1 = new User();
-//    	user1.setId("u1");
-//    	user1.setName("userone");
-//    	user1.setUserEmailAddr("547504175@qq.com");
-//    	user1.setUserEmailPwd("cozzrzxvntiebcdh");
-//    	user1.setUserWeiboAccessToken("2.005a9yjB986STE65c5541eadH2CkfD");
-//    	UserDaoImpl utmp = new UserDaoImpl();
-//    	utmp.add(user1);
-//    	微博->邮件
-//    	TaskServiceImpl t = new TaskServiceImpl();
-//    	IfThis thisWeibo = new IfThisListenWeibo("u1","一年又一年");
-//    	thisWeibo.setThisId("this1");
-//    	thisWeibo.setThisType(IfThis.thisListenWeiboTypeValue);
-//    	thisWeibo.setThisInfo("if send weibo 一年又一年");
-//    	ThenThat thatSendMail = new ThenThatSendMail("u1","547504175@qq.com","微博->邮件");
-//    	thatSendMail.setThatId("that1");
-//    	thatSendMail.setThatType(ThenThat.thatSendMailTypeValue);
-//    	t.addTask("u1","task1","thatone",thisWeibo,thatSendMail);
-//    	t.startTask("task1");
-//    	
-//    	//邮件->微博
-//    	TaskServiceImpl t = new TaskServiceImpl();
-//    	IfThis thisMail = new IfThisReceiveMail("u1");
-//    	thisMail.setThisId("this2");
-//    	thisMail.setThisType(IfThis.thisReceiveMailTypeValue);
-//    	thisMail.setThisInfo("if this receive mail");
-//    	ThenThat thatWeibo = new ThenThatSendWeibo("u1","= =");
-//    	thatWeibo.setThatId("that2");
-//    	thatWeibo.setThatType(ThenThat.thatSendWeiboTypeValue);
-//    	t.addTask("u1","task2","thattwo",thisMail,thatWeibo);
-//    	t.startTask("task2");
-    	
-    	//未发微博->邮件
-//    	TaskServiceImpl t = new TaskServiceImpl();
-//    	IfThisListenWeibo thisWeibo = new IfThisListenWeibo("u1");
-//    	thisWeibo.setThisId("this3");
-//    	thisWeibo.setThisType(IfThis.thisListenWeiboTypeValue);
-//    	thisWeibo.setThisInfo("not send weibo");
-//    	thisWeibo.setThisWeiboType(IfThisListenWeibo.IfThisListenWeiboTypeTwo);
-//    	thisWeibo.setThisTimeLen("1");
-//    	
-//    	ThenThat thatSendMail = new ThenThatSendMail("u1","547504175@qq.com","微博->邮件");
-//    	thatSendMail.setThatId("that3");
-//    	thatSendMail.setThatType(ThenThat.thatSendMailTypeValue);
-//    	
-//    	t.addTask("u1","task3","thatone",thisWeibo,thatSendMail);
-//    	t.startTask("task3");
-    	
+    public static void main(String args[]){  
     	thread.TaskThread thread = new thread.TaskThread();
     	thread.start();
-    	
-//    	IfThis thisTime = new IfThisTime("this7","2015-12-27 21:40");
-//    	ThenThat thatMail = new ThenThatSendMail("61","547504175@qq.com","send a mail ");
-//    	thatMail.setThatId("that7");
-//    	t.addTask("61", "task-7", "task-six", thisTime, thatMail);
-//    	t.startTask("task-7");
-//      dao.impl.UserDaoImpl tt = new dao.impl.UserDaoImpl();
-//		tt.add(new User("61","my4","b","c",6,7,8,9,10,"547504175@qq.com","cozzrzxvntiebcdh","k","l","m"));
-//
-//    	TaskServiceImpl t = new TaskServiceImpl();
-//    	IfThis this_ = new IfThisTime("2015-12-26 23:37");
-//    	ThenThat that_ = new ThenThatSendMail("61","547504175@qq.com","fighting");
-     
     }
+    
+    
 	public User registerUser(User user)throws Exception{
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 

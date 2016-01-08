@@ -41,10 +41,16 @@ if(users != null){
 }%>
 function showUserList() {
 	usersNum = '${formbean.users.size()}';
-	var list = "";
+	var list = "<tr>" +
+	"<th class=\"tableTd\">User ID</th>" +
+	"<th class=\"tableTd\">User Name</th>" +
+	"<th class=\"tableTd\">User Level</th>" +
+	"<th class=\"tableTd\">User Money</th>" +
+	"<th class=\"tableTd\">Operate</th>" +
+	"</tr>";
 	var i;
 	for(i = 0; i < usersNum; i ++) {
-		if(usersId != "0") {
+		if(usersId[i] != "0") {
 			list += "<tr>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + usersId[i] + "\"" + "disabled=\"disabled\"></td>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + usersName[i] + "\"" + "disabled=\"disabled\"></td>" +
@@ -138,8 +144,7 @@ function showMessages() {
 <span style="font-size:18px;">Table of Accounts Info:
 <img id="userCloseBtn" class="closeIcon" src="${pageContext.request.contextPath}/imag/close.png"></span><br>
 
-<table id="userInfoTable">
-</table>
+<table id="userInfoTable"> </table>
 <script> showUserList(); </script>
 
 <div  style="margin-top:10px;margin-bottom:10px;">
@@ -350,7 +355,7 @@ window.onload=function()
 			  }
 		  })(i);
 	}
-	for(var i=0;i<messagebtnClassDelete.length;i++)
+	for(var i=0;i < messagebtnClassDelete.length;i++)
 	{
 		messagebtnClassDelete[i].onclick=(function(j){
 			  return function() {
