@@ -449,8 +449,6 @@ function submitWholeForm(destServlet) {
             </li>
         </ul>
         </div>
-        <input type="button" onclick="submitWholeForm('EditTaskServlet'); return false" id="submitEdit" value="submit test"/>
-        <script>showTasks();</script>
         <div id="Edit_time" class="window_form1">
                <form action="" method="post" id="editForm">
                      <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -502,10 +500,13 @@ function submitWholeForm(destServlet) {
         <button id="pre_page" onclick="lastPage()">上一页</button>
         <button id="next_page" onclick="nextPage()">下一页</button>
     </div>
-    <div style="position: fixed;float:right;margin-top:100px;margin-left:900px;">
+      <div  style="position: fixed;float:right;margin-buttom:80px;margin-left:1000px;">
         <a href="" onclick="jump2UserServlet('CreateTaskUIServlet'); return false"><img src="${pageContext.request.contextPath}/imag/createTask.png" id="createTask_img"/></a>
+    </div >
+   <div style="position: fixed;float:right;margin-top:80px;margin-left:1000px;">
+     <img src="${pageContext.request.contextPath}/imag/submit.png" onclick="submitWholeForm('EditTaskServlet'); return false" id="submitEdit"/>
     </div>
-    </div>
+    <script>showTasks();</script>
      <div class="foot">2015©MBQ</div>
      <script>
         document.getElementById("cancelBtn_edit_time").addEventListener("click", function () { 

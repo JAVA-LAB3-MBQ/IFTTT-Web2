@@ -138,7 +138,7 @@ function submitWholeForm(destServlet) {
     </div>
     <img src="${pageContext.request.contextPath}/imag/line.jpg">
 </div>
-	<input type="button" onclick="submitWholeForm('CreateTaskServlet'); return false" value="submit test"/>
+	
 	<div class="Wrapper">
             <div class="title_tips">
                 Create a Recipe
@@ -195,6 +195,7 @@ function submitWholeForm(destServlet) {
             </div>
             <div id="center_contatiner">
                 <img src="${pageContext.request.contextPath}/imag/creat.jpg" id="bg_${pageContext.request.contextPath}/image" width="700px" />
+           		<img src="${pageContext.request.contextPath}/imag/submitAll.png" onclick="submitWholeForm('CreateTaskServlet'); return false" />
             </div>
             <div class="chooseTask">
                 <label>Choose Task</label>
