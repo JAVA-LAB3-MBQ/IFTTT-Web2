@@ -37,13 +37,11 @@ public class ChangeUserServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		// maybe changes
 		String userLevel = request.getParameter("userLevel");
-		String userMoney = request.getParameter("userMoney");
 		
 		// change user
 		UserServiceImpl uservice = new UserServiceImpl();
 		User user = uservice.getUserInfo(userId);
 		user.setUserLevel(Integer.parseInt(userLevel));
-		user.setUserMoney(Integer.parseInt(userMoney));
 		uservice.changeUser(userId, user);
 		
 		// formbean

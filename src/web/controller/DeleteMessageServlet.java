@@ -33,6 +33,8 @@ public class DeleteMessageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in DeleteMessageServlet");
+		
 		// get messageId
 		String messageId = request.getParameter("messageId");
 		

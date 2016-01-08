@@ -102,9 +102,7 @@ function showMessages() {
 		    publicList += "<tr>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + messagesId[i] +"\"" + "disabled=\"disabled\"></td>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + messagesContent[i] +"\"" + "disabled=\"disabled\"></td>" +
-			"<td><input type=\"button\" class=\"messagetableTdBtnEdit\"  value=\"Edit\">" +
-			"<input type=\"button\" class=\"messagetableTdBtnSave\"  value=\"Save\" style=\"display:none;\">" +
-			"<input type=\"button\" class=\"messagetableTdBtnDelete\"  value=\"Delete\">" +
+			"<td><input type=\"button\" class=\"messagetableTdBtnDelete\"  value=\"Delete\">" +
 			"</td>" +
 			"</tr>";
 		}
@@ -113,15 +111,58 @@ function showMessages() {
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + messagesId[i] + "\"" + "disabled=\"disabled\"></td>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + messagesToUserId[i] + "\"" + "disabled=\"disabled\"></td>" +
 			"<td><input type=\"text\" class=\"tableTd\" value=\"" + messagesContent[i] + "\"" + "disabled=\"disabled\"></td>" +
-			"<td><input type=\"button\" class=\"usermessagetableTdBtnEdit\"  value=\"Edit\">" +
-			"<input type=\"button\" class=\"usermessagetableTdBtnSave\"  value=\"Save\" style=\"display:none;\">" +
-			"<input type=\"button\" class=\"usermessagetableTdBtnDelete\"  value=\"Delete\">" +
+			"<td><input type=\"button\" class=\"usermessagetableTdBtnDelete\"  value=\"Delete\">" +
 			"</td>" +
 			"</tr>";
 		}
 	}
 	document.getElementById("systemMessageInfoTable").innerHTML = publicList;
 	document.getElementById("usersMessageInfoTable").innerHTML = privateList
+}
+
+function editUserLevel(destServlet, userId, level) {
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // userId
+    var uidParam = document.createElement("textarea");        
+    uidParam.name = "userId";
+    uidParam.value = userId;
+    ftemp.appendChild(uidParam);
+    
+    // user Level
+    var lidParam = document.createElement("textarea");        
+    lidParam.name = "userLevel";
+    lidParam.value = level;
+    ftemp.appendChild(lidParam);
+    
+    document.body.appendChild(ftemp);
+    ftemp.submit(); // jump
+	
+}
+
+function deleteMessage(destServlet, mid) {
+	alert("enter deleteMessage");
+	
+	var ftemp = document.createElement("form");
+    ftemp.action = "${pageContext.request.contextPath}/" + destServlet;
+    alert("action : " + ftemp.action);
+    ftemp.method = "post";        
+    ftemp.style.display = "none";        
+    
+    // message id
+    var lidParam = document.createElement("textarea");        
+    lidParam.name = "messageId";
+    lidParam.value = mid;
+    alert("delete mid: " + mid);
+    ftemp.appendChild(lidParam);
+    
+    document.body.appendChild(ftemp);
+    alert("submit");
+    ftemp.submit(); // jump
+	
 }
 </script>
 </head>
@@ -272,7 +313,7 @@ window.onload=function()
 			  return function() {
 				  objRow[j]= this.parentNode.parentNode;
 				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
+				  objRowCellsLevel=a[2].childNodes[0];
 				  objRowCellsLevel.disabled="";
 				  objRowCellsLevel.select();
 				  objRowCellsLevel.focus();
@@ -282,69 +323,20 @@ window.onload=function()
 		  })(i);
 		  userbtnClassSave[i].onclick=(function(j){
 			  return function() {
-				  objRow[j]= this.parentNode.parentNode;
-				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
+				  objRow[j] = this.parentNode.parentNode;
+				  a = objRow[j].cells;
+				  objRowCellsLevel = a[2].childNodes[0];
 				  objRowCellsLevel.disabled="disabled";
 				  this.style.display="none";
 				  userbtnClassEdit[j].style.display="inline";
+				  alert(objRowCellsLevel.value);
+				  
+				  // get userId
+				  editUserLevel("ChangeUserServlet", a[0].childNodes[0].value, objRowCellsLevel.value);
 			  }
 		  })(i);
 		}
-	for(var i=0;i<messagebtnClassEdit.length;i++)
-		{
-		  messagebtnClassEdit[i].onclick=(function(j){
-			  return function() {
-				  objRow[j]= this.parentNode.parentNode;
-				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
-				  objRowCellsLevel.disabled="";
-				  objRowCellsLevel.select();
-				  objRowCellsLevel.focus();
-				  this.style.display="none";
-				  messagebtnClassSave[j].style.display="inline";
-			  }
-		  })(i);
-		  messagebtnClassSave[i].onclick=(function(j){
-			  return function() {
-				  objRow[j]= this.parentNode.parentNode;
-				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
-				  objRowCellsLevel.disabled="disabled";
-				  this.style.display="none";
-				  messagebtnClassEdit[j].style.display="inline";
-			  }
-		  })(i);
-		}
-	for(var i=0;i<usermessagebtnClassEdit.length;i++)
-	{
-		  usermessagebtnClassEdit[i].onclick=(function(j){
-			  return function() {
-				  objRow[j]= this.parentNode.parentNode;
-				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
-				  objRowCellsLevel.disabled="";
-				  objRowCellsLevel=a[2].childNodes[0];
-				  objRowCellsLevel.disabled="";
-				  objRowCellsLevel.select();
-				  objRowCellsLevel.focus();
-				  this.style.display="none";
-				  usermessagebtnClassSave[j].style.display="inline";
-			  }
-		  })(i);
-		  usermessagebtnClassSave[i].onclick=(function(j){
-			  return function() {
-				  objRow[j]= this.parentNode.parentNode;
-				  a=objRow[j].cells;
-				  objRowCellsLevel=a[1].childNodes[0];
-				  objRowCellsLevel.disabled="disabled";
-				  objRowCellsLevel=a[2].childNodes[0];
-				  objRowCellsLevel.disabled="disabled";
-				  this.style.display="none";
-				  usermessagebtnClassEdit[j].style.display="inline";
-			  }
-		  })(i);
-		}
+	
 	for(var i=0;i<usermessagebtnClassDelete.length;i++)
 	{
 		usermessagebtnClassDelete[i].onclick=(function(j){
@@ -362,6 +354,11 @@ window.onload=function()
 				  objTable[j]=this.parentNode.parentNode.parentNode;
 				  objRow[j]= this.parentNode.parentNode;
 				  objTable[j].deleteRow(objRow[j].rowIndex);
+				  // get messageId
+				  a = objRow[j].cells;
+				  ObjRowCellsMid = a[0].childNodes[0];
+				  alert(ObjRowCellsMid.value);
+				  deleteMessage("DeleteMessageServlet", ObjRowCellsMid.value);
 			  }
 		  })(i);
 	}
