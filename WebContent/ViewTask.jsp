@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
             </li>
         </ul>
-         <div id="Edit_time_mail" class="window_form"> 
+         <div id="Edit_time_mail" class="window_form1"> 
                 <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input style="margin-left:62px;" type="button" id="cancelBtn_edit_time_mail" value="Cancel">
                     </form>
         </div>
-        <div id="Edit_time_weibo" class="window_form">
+        <div id="Edit_time_weibo" class="window_form1">
                 <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input style="margin-left:62px;" type="button" id="cancelBtn_edit_time_weibo" value="Cancel">
                     </form>
         </div>
-        <div id="Edit_mail_mail" class="window_form">
+        <div id="Edit_mail_mail" class="window_form1">
                    <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input style="margin-left:62px;" type="button" id="cancelBtn_edit_mail_mail" value="Cancel">
                     </form>
         </div>
-        <div id="Edit_mail_weibo" class="window_form">
+        <div id="Edit_mail_weibo" class="window_form1">
                    <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input style="margin-left:62px;" type="button" id="cancelBtn_edit_mail_weibo" value="Cancel">
                     </form>
         </div>
-        <div id="Edit_weibo_weibo" class="window_form">
+        <div id="Edit_weibo_weibo" class="window_form1">
                 <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />
@@ -186,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input style="margin-left:62px;" type="button" id="cancelBtn_edit_weibo_weibo" value="Cancel">
                     </form>
         </div>
-        <div id="Edit_weibo_mail" class="window_form">
+        <div id="Edit_weibo_mail" class="window_form1">
                 <span class="editTitle_1">Edit your Recipe:</span>
                     <form action="" method="post" id="editForm">
                         <span class="editTitle_2">Edit your Trigger:</span><br />

@@ -39,9 +39,44 @@ public class TaskDaoImpl implements ITaskDao {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con =
 					DriverManager.getConnection(DatabaseInfo.url, DatabaseInfo.username, DatabaseInfo.password);
+			Statement q = con.createStatement();
+			String query = "select thisId,thatId,thisType,thatType from task where taskId = \"" + taskId + "\"";
+			ResultSet res = q.executeQuery(query);
+			String thisId = null;
+			String thatId = null;
+			int thisType = 0;
+			int thatType = 0;
+			if(res.next()){
+				thisId = res.getString("thisId");
+				thatId = res.getString("thatId");
+				thisType = res.getInt("thisType");
+				thatType = res.getInt("thatType");
+			}
 			Statement statement = con.createStatement();
 			String update = "delete from task where taskId = \"" + taskId + "\"";
 			statement.executeUpdate(update);
+			Statement statement2 = con.createStatement();
+			String update2 = null;
+			if(thisType == domain.IfThis.thisTimeTypeValue){
+				update2 = "delete from IfThisTime where thisId = \"" + thisId + "\"";
+			}
+			else if(thisType == domain.IfThis.thisListenWeiboTypeValue){
+				update2 = "delete from IfThisListenWeibo where thisId = \"" + thisId + "\"";
+			}
+			else if(thisType == domain.IfThis.thisReceiveMailTypeValue){
+				update2 = "delete from IfThisReceiveMail where thisId = \"" + thisId + "\"";
+			}
+			statement2.executeUpdate(update2);
+			
+			Statement statement3 = con.createStatement();
+			String update3 = null;
+			if(thatType == domain.ThenThat.thatSendMailTypeValue){
+				update3 = "delete from ThenThatSendMail where thatId = \"" + thatId + "\"";
+			}
+			else if(thatType == domain.ThenThat.thatSendWeiboTypeValue){
+				update3 = "delete from ThenThatSendWeibo where thatId = \"" + thatId + "\"";
+			}
+			statement3.executeUpdate(update3);
 			con.close();
 			return true;
 		}

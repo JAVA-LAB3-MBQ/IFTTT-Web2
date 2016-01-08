@@ -57,9 +57,15 @@ public class CreateTaskServlet extends HttpServlet {
 			break;
 		}
 		case IfThis.thisListenWeiboTypeValue : {
-             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbPwd(), 
+             this_ = new IfThisListenWeibo(userId,form.getListenWbId(), form.getListenWbPwd(), 
             		 form.getListenWbText(), form.getListenTimeLen());
-       
+             
+             System.out.println(form.getListenWbText()==null);
+             System.out.println(form.getListenTimeLen()==null);
+             System.out.println(form.getListenWbText().length());
+             System.out.println(form.getListenTimeLen().length());
+             System.out.println(form.getListenWbText());
+             System.out.println(form.getListenTimeLen());
 			 break;
 		}
 		 default: System.out.println("Unknown ThisType");

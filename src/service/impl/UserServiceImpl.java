@@ -122,6 +122,11 @@ public class UserServiceImpl implements IUserService {
 		
 	}
 	
+	public User getUserInfoByName(String userName) {
+		UserDaoImpl udb = new UserDaoImpl();
+		return udb.findByName(userName);
+	}
+	
 	public User loginUser(String userName, String userPwd){
 		UserDaoImpl t = new UserDaoImpl();
 		User user = t.find(userName, userPwd);
@@ -155,14 +160,21 @@ public class UserServiceImpl implements IUserService {
 	public User editUserInfo(String uId, String mail, String mailPwd, String weiboId, String weiboPwd) {
 		UserDaoImpl udb = new UserDaoImpl();
 		User user = udb.find(uId);
-		String new_access_token;
+		String new_access_token = null;
 		
 		// get a new weibo access_token ?
 		if(weiboId.equals(user.getUserWeiboId()) ) {
-			new_access_token = WeiboAccessToken.getAccessToken(weiboId, weiboPwd);
+			//new_access_token = WeiboAccessToken.refreshAccessToken(weiboId, weiboPwd);
+			new_access_token = user.getUserWeiboAccessToken();
 		}
-		else {
-			new_access_token = WeiboAccessToken.refreshAccessToken(weiboId, weiboPwd);
+		else { // a new weibo id
+			System.out.println("in UserServiceImpl line 165 getAccessToken");
+			try {
+				new_access_token = WeiboAccessToken.getAccessToken(weiboId, weiboPwd);
+			}
+			catch(Exception e) {
+				System.out.println("get access token failed");
+			}
 		}
 		
 		// don't change user's id, money, level score
@@ -186,4 +198,11 @@ public class UserServiceImpl implements IUserService {
 		UserDaoImpl udb = new UserDaoImpl();
 		udb.changeUserStatus(userId, User.loggedOut);
 	}
+	
+	public ArrayList<User> changeUser(String userId, User newUser){
+		dao.impl.UserDaoImpl t = new dao.impl.UserDaoImpl();
+		t.remove(userId);
+		t.add(newUser);
+		return getUserList();
+	}	
 }

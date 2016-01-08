@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.impl.MessageServiceImpl;
 import service.impl.UserServiceImpl;
+import web.formbean.ManagerFormBean;
 import web.formbean.UserMainFormBean;
 import domain.User; 
 /**
@@ -50,16 +52,30 @@ public class LoginServlet extends HttpServlet {
 		if(user != null){ // successed
 			System.out.println("login successfully");
 		    
-			// construct formbean
-			UserMainFormBean formbean = new UserMainFormBean();
-			formbean.setUserId(user.getUserId());
-			formbean.setUserLevel(String.format("%d", user.getUserLevel()));
-			formbean.setUserScore(String.format("%d", user.getUserScore()));
-			formbean.setUserName(user.getName());
-			request.setAttribute("formbean", formbean);
-				
-			// jump to UserMain.jsp
-			request.getRequestDispatcher("/UserMain.jsp").forward(request, response);
+			if(user.getUserRole() == user.generalUserTypeValue) {
+				// construct formbean
+				UserMainFormBean formbean = new UserMainFormBean();
+				formbean.setUserId(user.getUserId());
+				formbean.setUserLevel(String.format("%d", user.getUserLevel()));
+				formbean.setUserScore(String.format("%d", user.getUserScore()));
+				formbean.setUserName(user.getName());
+				request.setAttribute("formbean", formbean);
+			
+				// jump to UserMain.jsp
+				request.getRequestDispatcher("/UserMain.jsp").forward(request, response);
+			}
+			else if(user.getUserRole() == user.superUserTypeValue) { // manager
+				// formbean
+				ManagerFormBean formbean = new ManagerFormBean();
+				UserServiceImpl uservice = new UserServiceImpl();
+				MessageServiceImpl mservice = new MessageServiceImpl();
+				formbean.setUsers(uservice.getUserList());
+				formbean.setMessages(mservice.getAllMessages());
+				request.setAttribute("formbean", formbean);
+						
+				// jump 
+				request.getRequestDispatcher("/Manager.jsp").forward(request, response);
+			}
 		}
 		else { // failed
 			// todo: 	

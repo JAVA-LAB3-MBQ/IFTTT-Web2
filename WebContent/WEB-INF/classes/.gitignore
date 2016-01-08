@@ -1,11 +1,5 @@
-/config.properties
-/dao/
-/domain/
-/log4j.properties
-/service/
-/test/
-/thread/
+/.gitignore
 /util/
+/domain/
 /web/
-/weibo/
-/weibo4j/
+/dao/

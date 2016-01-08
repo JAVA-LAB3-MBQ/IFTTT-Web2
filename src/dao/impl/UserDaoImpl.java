@@ -12,6 +12,7 @@ public class UserDaoImpl implements IUserDao{
 	String url = "jdbc:mysql://localhost:3306/java" ;   
     String username = DatabaseInfo.username ;    
     String password = DatabaseInfo.password ; 
+    
 	public User find(String userName, String userPwd){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver") ; 
@@ -42,6 +43,33 @@ public class UserDaoImpl implements IUserDao{
 	    return null;
 	}
 	
+	public User findByName(String userName) {
+		// todo : get the user 
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+			System.out.println("Driver Class Not Fount, Loader Failure!");
+		}
+		try{
+			Connection con = 
+					DriverManager.getConnection(domain.DatabaseInfo.url, domain.DatabaseInfo.username,domain.DatabaseInfo.password);
+			Statement statement = con.createStatement();
+			String query = "select * from User where userName = \"" + userName + "\";";
+			ResultSet res = statement.executeQuery(query);
+			if(res.next()){
+				domain.User user = new domain.User(res.getString("userId"),res.getString("userName"),res.getString("userPwd"),res.getString("registerTime"),
+						Integer.parseInt(res.getString("userLevel")),Integer.parseInt(res.getString("userScore")),Integer.parseInt(res.getString("userRole")),Integer.parseInt(res.getString("userStatus")),Integer.parseInt(res.getString("userMoney")),
+						res.getString("userEmailAddr"),res.getString("userEmailPwd"),res.getString("userWeiboId"),res.getString("userWeiboAccessToken"),res.getString("userWeiboPwd"));
+				return user;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;		
+	}
 	public User find(String userId) {
 		// todo : get the user 
 		try{
@@ -81,6 +109,12 @@ public class UserDaoImpl implements IUserDao{
 	    try{    
 	    	Connection con =     
 	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ;    
+			Statement t = con.createStatement();
+	    	String getToken = "select weiboAccessToken from token where weiboId = \"" + user.getUserWeiboId() + "\"";
+	    	ResultSet r = t.executeQuery(getToken);
+	    	if(r.next()){
+	    		user.setUserWeiboAccessToken(r.getString("weiboAccessToken"));
+	    	}
 	    	Statement statement = con.createStatement();
 	    	
 	    	String statementString1 = "select * from user where userName = \"" + user.getName() + "\"" ;

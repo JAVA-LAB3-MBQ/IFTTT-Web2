@@ -84,21 +84,47 @@ public class IfThisListenWeibo extends IfThis{
 		long newCount = tmp.getCount();
 		thisWeiboCount = newCount;
 	}
-	public IfThisListenWeibo(String weiboId, String weiboPwd, String content, String t) {
+	public IfThisListenWeibo(String userId, String weiboId, String weiboPwd, String content, String t) {
+		thisWeiboContent = content;
+		try{
+		    Class.forName("com.mysql.jdbc.Driver") ; 
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		    System.out.println("Driver Class Not Found, Loader Failure!");  //找不到驱动程序类 ，加载驱动失败
+		}  
+	    try{ 
+	    	Connection con =     
+	    			DriverManager.getConnection(domain.DatabaseInfo.url , domain.DatabaseInfo.username , domain.DatabaseInfo.password ) ; 
+	    
+	    	Statement statement1 = con.createStatement();
+	    	String query1 = "select * from User where userId = \"" + userId + "\"";
+	    	System.out.println(query1);
+	    	ResultSet res1 = statement1.executeQuery(query1);
+	    	if(res1.next()){
+		    	thisWeiboAccessToken = res1.getString("userWeiboAccessToken");
+		    	thisWeiboId = res1.getString("userWeiboId");
+	    	}
+	     }
+	     catch(SQLException se){    
+	    	System.out.println("Connection to Database Failed!");    
+	    	se.printStackTrace() ;    
+	     }  
+		ForWeibo tmp = new ForWeibo(thisWeiboAccessToken);
+		long newCount = tmp.getCount();
+		thisWeiboCount = newCount;
+		this.setThisType(IfThis.thisListenWeiboTypeValue);
+		if(content.length()!=0){
+			this.setThisInfo("if send a weibo--" + thisWeiboId);
+			thisWeiboType = IfThisListenWeiboTypeOne;
+		}
+		else{
+			this.setThisInfo("if not send a weibo in " + t + " minutes ");
+			thisWeiboType = IfThisListenWeiboTypeTwo;
+		}
 		setThisWeiboId(weiboId);
 		setThisWeiboContent(content);
 		setThisTimeLen(t);
-		this.setThisType(IfThis.thisListenWeiboTypeValue);
-		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
-	}
-	public IfThisListenWeibo(String thisId, String weiboId, String pwd, String content, String t) {
-		setThisId(thisId);
-		setThisWeiboId(weiboId);
-		setThisWeiboAccessToken(pwd);
-		setThisWeiboContent(content);
-		setThisTimeLen(t);
-		this.setThisType(IfThis.thisListenWeiboTypeValue);
-		this.setThisInfo("if send a weibo: receiver-" + thisWeiboId);
 	}
 	
 	public boolean ifHappened() {

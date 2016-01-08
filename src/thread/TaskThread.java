@@ -54,6 +54,7 @@ public class TaskThread extends Thread{
 								System.out.println("resThat has next ");
 								IfThisReceiveMail thisMail = new IfThisReceiveMail(resThis.getString("thisId"),resThis.getString("thisEmailId"),resThis.getString("thisEmailPwd"));		
 								thisMail.setThisEmailCount(resThis.getInt("thisEmailCount"));
+								
 								if(thisMail.ifHappened()){
 									System.out.println("receive a mail");
 									if(thatType == ThenThat.thatSendMailTypeValue){

@@ -127,6 +127,9 @@ function submitWholeForm(destServlet) {
                         <a href="" onclick="jump2Servlet('EditUserInfoUIServlet'); return false">Edit</a>
                     </li>
                     <li>
+                        <a href="" onclick="jump2Servlet('UserMessagesServlet'); return false">Messages</a>
+                    </li>
+                    <li>
                         <a href="" onclick="jump2Servlet('SignOutServlet'); return false">Sign out</a>
                     </li>
                 </ul>
@@ -160,8 +163,7 @@ function submitWholeForm(destServlet) {
             </div>
             <div id="show_window_mail" class="window_form">
                     <form action="" method="post" id="thisMailForm">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mail：<input type="text" name="" id="input_email" class="ipt" /><br />
-                        Password：<input type="password" name="" id="input_mail_pwd" class="ipt" /><br />
+                        If receive a mail<br />
                         <input type="button" id="submitBtn_mail" value="commit" style="margin-left:82px;">
                         <input type="button" id="cancelBtn_mail" value="cancle" style="margin-left:62px;">
                     </form>
@@ -178,16 +180,14 @@ function submitWholeForm(destServlet) {
             </div>
             <div id="show_window_mail_send" class="window_form">
                     <form action="" method="post" id="thatMailForm">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To：<input type="text" name="destMailAddr" id="destMailAddr_" class="ipt" /><br />
-                        Content：<input type="text" name="sendMailContent" id="sendMailContent_" class="ipt" /><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To：<input type="text" name="" id="destMailAddr_" class="ipt" /><br />
+                        Content：<input type="text" name="" id="sendMailContent_" class="ipt" /><br />
                         <input type="button" id="submitBtn_send_mail" value="commit" style="margin-left:76px;">
                         <input type="button" id="cancelBtn_send_mail" value="cancle" style="margin-left:62px;">
                     </form>
             </div>
             <div id="show_window_weibo_send" class="window_form">
                     <form action="" method="post" id="thatWeiboForm">
-                        &nbsp;&nbsp;WeiboID：<input type="text" name="" id="input_weibo_send_id" class="ipt" /><br />
-                        Password：<input type="password" name="" id="input_weibo_send_pwd" class="ipt" /><br />
                         &nbsp;&nbsp;Content：<input type="text" name="sendWeiboContent" id="sendWeiboContent_" class="ipt" /><br />
                         <input type="button" id="submitBtn_weibo_send" value="commit" style="margin-left:76px;">
                         <input type="button" id="cancelBtn_weibo_send" value="cancle" style="margin-left:62px;">

@@ -59,6 +59,11 @@ function jump2Servlet(destServlet) {
                         </a>
                     </li>
                     <li>
+                        <a href="" onclick="jump2Servlet('UserMessagesServlet'); return false">
+                        Messages
+                        </a>
+                    </li>
+                    <li>
                         <a href="" onclick="jump2Servlet('SignOutServlet'); return false">
                         Sign out
                         </a>

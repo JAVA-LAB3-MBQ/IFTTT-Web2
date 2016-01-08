@@ -4,6 +4,8 @@ import domain.*;
 import java.util.ArrayList;
 
 public interface IUserService {
+	public User getUserInfoByName(String userName);
+	
 	public User registerUser(User user)throws Exception;
 	
 	public User loginUser(String userName, String userPwd);
@@ -20,4 +22,5 @@ public interface IUserService {
 
 	public void signOut(String userId);
 	
+	public ArrayList<User> changeUser(String userId, User newUser);
 }

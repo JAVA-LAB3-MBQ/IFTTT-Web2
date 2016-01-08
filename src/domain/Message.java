@@ -1,12 +1,13 @@
 package domain;
+import java.util.ArrayList;
 public class Message {
 	String messageId;
 	String fromUserId;
 	String toUserId;
 	String messageContent;
 	int messageType;
-	public static int messagePublicTypeValue = 1;
-	public static int messagePrivateTypeValue = 2;
+	public final static int messagePublicTypeValue = 1;
+	public final static int messagePrivateTypeValue = 2;
 	public Message(){
 	}
 	public Message(String messageId,String fromUserId,String toUserId,String messageContent,int type){
@@ -54,6 +55,9 @@ public class Message {
 	public boolean removeFromDb(){
 		dao.impl.MessageDaoImpl t = new dao.impl.MessageDaoImpl();
 		return t.removeMessage(this);
+	}
+	public int getType() {
+		return this.messageType;
 	}
 	
 }

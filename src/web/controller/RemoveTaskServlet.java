@@ -56,7 +56,7 @@ public class RemoveTaskServlet extends HttpServlet {
 		request.setAttribute("formbean", formbean);
 			    
 		// jump to UserTasks.jsp
-		request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);;
+		request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
 	}
 
 	/**

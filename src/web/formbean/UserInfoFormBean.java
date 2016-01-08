@@ -1,7 +1,7 @@
 package web.formbean;
 
 public class UserInfoFormBean {
-	String userId, userName, userMail, userMailPwd, userWeiboId, userWeiboPwd;
+	String userId, userName, userMail, userMailPwd, userWeiboId, userWeiboPwd, userWeiboAccessToken;
     String userScore, userLevel, userMoney;
     
     public void printAll() {
@@ -14,7 +14,17 @@ public class UserInfoFormBean {
     	System.out.println("userScore: " + getUserScore());
     	System.out.println("userLevel: " + getUserLevel());
     	System.out.println("userMoney: " + getUserMoney());
+    	System.out.println("userWeiboAccessToken: " + getUserWeiboAccessToken());
     }
+    
+    public String getUserWeiboAccessToken() {
+    	return userWeiboAccessToken;
+    }
+    
+    public void setUserWeiboAccessToken(String at) {
+    	userWeiboAccessToken = at;
+    }
+    
     public String getUserId() {
     	return userId;
     }

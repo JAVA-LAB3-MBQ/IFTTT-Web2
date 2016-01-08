@@ -59,6 +59,11 @@ function jump2Servlet(destServlet) {
                         </a>
                     </li>
                     <li>
+                        <a href="" onclick="jump2Servlet('UserMessagesServlet'); return false">
+                        Messages
+                        </a>
+                    </li>
+                    <li>
                         <a href="" onclick="jump2Servlet('SignOutServlet'); return false">
                         Sign out
                         </a>
@@ -94,9 +99,9 @@ function jump2Servlet(destServlet) {
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             		<input type = "text" name="userWeiboId" value = "${formbean.userWeiboId}" style = " width:180px ;height:28px;">
             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<label>Weibo password</label>
+            		<label>Access token</label>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            		<input type = "password" name="userWeiboPwd" value = "${formbean.userWeiboPwd}" style = " width:180px ;height:28px;">
+            		<input type = "text" name="userWeiboAccessToken" value = "${formbean.userWeiboAccessToken}" style = " width:180px ;height:28px;">
             		<img src = "${pageContext.request.contextPath}/imag/line.jpg" class = "line">
             	</p>
             	<p>

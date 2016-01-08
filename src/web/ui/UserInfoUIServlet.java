@@ -49,6 +49,7 @@ public class UserInfoUIServlet extends HttpServlet {
 		formbean.setUserScore(String.format("%d", user.getUserScore()));
 		formbean.setUserWeiboId(user.getUserWeiboId());
 		formbean.setUserWeiboPwd(user.getUserWeiboPwd());
+		formbean.setUserWeiboAccessToken(user.getUserWeiboAccessToken());
 		request.setAttribute("formbean", formbean);
 				
 		// test

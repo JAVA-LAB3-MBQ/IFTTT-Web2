@@ -41,15 +41,14 @@ public class EditTaskServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ATaskFormBean form = WebUtils.request2Bean(request, ATaskFormBean.class);
+		System.out.println("in editTaskServlet  userId: " + request.getParameter("userId"));
+		form.printAll();
+		
 		String userId = form.getUserId();
 		
-		int thisType = -1, thatType = -1;
-		try {
-			thisType = form.getThisTypeInt();
-			thatType = form.getThatTypeInt();
-		} catch( NumberFormatException e ) {
-			
-		}
+		int	thisType = form.getThisTypeInt();
+		int	thatType = form.getThatTypeInt();
+		
  		IfThis this_ = null;
 		ThenThat that_ = null;
 		
@@ -64,47 +63,53 @@ public class EditTaskServlet extends HttpServlet {
 			break;
 		}
 		case IfThis.thisListenWeiboTypeValue : {
-             this_ = new IfThisListenWeibo(form.getListenWbId(), form.getListenWbPwd(), 
+             this_ = new IfThisListenWeibo(userId,form.getListenWbId(), form.getListenWbPwd(), 
             		 form.getListenWbText(), form.getListenTimeLen());
              
+             System.out.println(form.getListenWbText()==null);
+             System.out.println(form.getListenTimeLen()==null);
+             System.out.println(form.getListenWbText().length());
+             System.out.println(form.getListenTimeLen().length());
+             System.out.println(form.getListenWbText());
+             System.out.println(form.getListenTimeLen());
 			 break;
 		}
 		 default: System.out.println("Unknown ThisType");
 		}
 		
-	    // that
-	    switch(thatType) {
-	    case ThenThat.thatSendMailTypeValue: {
-		    that_ = new ThenThatSendMail(userId, form.getDestMailAddr(), form.getSendMailContent());
-		    break;
-	    }
-	    case ThenThat.thatSendWeiboTypeValue: {
-		    that_ = new ThenThatSendWeibo(userId, form.getSendWeiboContent());
-		    break;
-	    }
-	    default: System.out.println("Unknown ThatType");
-	    }
+	 // that
+	  switch(thatType) {
+	  case ThenThat.thatSendMailTypeValue: {
+		  that_ = new ThenThatSendMail(userId, form.getDestMailAddr(), form.getSendMailContent());
+		  break;
+	  }
+	  case ThenThat.thatSendWeiboTypeValue: {
+		  that_ = new ThenThatSendWeibo(userId, form.getSendWeiboContent());
+		  break;
+	  }
+	  default: System.out.println("Unknown ThatType");
+	  }
 	  
-	    // this_ and that_ 's id
-	    this_.setThisId(IdGeneratorUtil.makeId());
-	    that_.setThatId(IdGeneratorUtil.makeId());
+	  // this_ and that_ 's id
+	  this_.setThisId(IdGeneratorUtil.makeId());
+	  that_.setThatId(IdGeneratorUtil.makeId());
 	  
-	    // this_ and that_ 's icon path
-	    this_.setThisIconPath(form.getThisIconPath());
-	    that_.setThatIconPath(form.getThatIconPath());
-	    
-	    // add a task
-	    TaskServiceImpl tservice = new TaskServiceImpl();
-	    tservice.editTask(userId, form.getTaskId(), form.getTaskName(), this_, that_);
+	  // this_ and that_'s icon path
+	  this_.setThisIconPath(form.getThisIconPath());
+	  that_.setThatIconPath(form.getThatIconPath());
+	  
+	  // add a task
+	  TaskServiceImpl tservice = new TaskServiceImpl();
+	  tservice.editTask(userId, form.getTaskId(), form.getTaskName(), this_, that_);
 		
-	    // construct formbean
-		UserTasksFormBean formbean = new UserTasksFormBean();
-		formbean.setUserId(userId);
-		formbean.setUserTasks((new UserServiceImpl()).getUserTasks(userId));
-		request.setAttribute("formbean", formbean);
+	  // construct form
+	  UserTasksFormBean formbean = new UserTasksFormBean();
+	  formbean.setUserId(userId);
+	  formbean.setUserTasks((new UserServiceImpl()).getUserTasks(userId));
+	  request.setAttribute("formbean", formbean);
 		
-		// jump to UserTasks.jsp
-		request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
+	  // jump to UserTasks.jsp
+	  request.getRequestDispatcher("/UserTasks.jsp").forward(request, response);
 	}
 
 	/**

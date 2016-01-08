@@ -11,6 +11,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import domain.IfThis;
 import domain.ThenThat;
 import domain.User;
+import domain.Message;
+
 public class WebUtils {
 	/*
 	 * convert the http request to an object
@@ -44,7 +46,7 @@ public class WebUtils {
 			return IfThis.thisListenWeiboTypeValue;
 		}
 		else {
-			System.out.println("WebUtil thisTypeString2Int 48, unknown thisType");
+			System.out.println("WebUtil thisTypeString2Int 48, unknown thisType" + t);
 			return -1;
 		}
 	}
@@ -87,6 +89,28 @@ public class WebUtils {
 		case ThenThat.thatSendMailTypeValue: return "SEND_MAIL";
 		default: System.out.println("WebUtil thatTypeString2Int 90, unknown thatType"); 
 		         return null;
+		}
+	}
+	
+	public static String messageTypeInt2String(int t) {
+		switch(t) {
+		case Message.messagePublicTypeValue: return "PUBLIC"; 
+		case Message.messagePrivateTypeValue: return "PRIVATE";
+		default:System.out.println("WebUtil messageTypeInt2String 99, unknown messageType"); 
+        		return null;
+		}
+	}
+	
+	public static int messageTypeString2Int(String t) {
+		if(t.equals("PUBLIC")) {
+			return Message.messagePublicTypeValue;
+		}
+		else if(t.equals("PRIVATE")) {
+			return Message.messagePrivateTypeValue;
+		}
+		else {
+			System.out.println("WebUtil MessageTypeString2Int 112, unknown messageType");
+			return -1;
 		}
 	}
  }
