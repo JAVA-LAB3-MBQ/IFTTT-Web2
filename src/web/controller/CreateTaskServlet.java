@@ -94,7 +94,7 @@ public class CreateTaskServlet extends HttpServlet {
 	  
 	  // add a task
 	  TaskServiceImpl tservice = new TaskServiceImpl();
-	  tservice.addTask(userId, IdGeneratorUtil.makeId(), form.getTaskName(), this_, that_);
+	  tservice.addTask(userId, IdGeneratorUtil.makeId(), "task", this_, that_);
 		
 	  // construct form
 	  UserTasksFormBean formbean = new UserTasksFormBean();

@@ -239,6 +239,13 @@ function submitWholeForm(destServlet) {
     uidParam.value = '${formbean.userId}';
     ftemp.appendChild(uidParam);
     
+    // taskId
+    var tidParam = document.createElement("textarea");        
+    tidParam.name = "taskId";
+    tidParam.value = editingTaskId;
+    ftemp.appendChild(tidParam);
+    
+    
     var thisIconPath = document.createElement("textarea");
     thisIconPath.name = "thisIconPath";
     thisIconPath.value = thisIconPath_; 
